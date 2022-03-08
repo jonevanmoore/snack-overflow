@@ -1,3 +1,3 @@
 
 
-![dbdiagram](./dbdiagram.jpg)
+![dbdiagram](./dbdiagram.JPG)
