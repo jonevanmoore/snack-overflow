@@ -1,0 +1,59 @@
+Table users {
+  id int
+  username varchar
+  password varchar
+  email varchar
+  bio text
+  image_links text
+  created_at datetime
+  updated_at datetime
+} 
+
+Table questions {
+  id int
+  user_id int
+  image_links text
+  title varchar
+  body text
+  created_at datetime
+  updated_at datetime
+}
+
+Table answers {
+  id int
+  user_id int
+  question_id int
+  body text
+  image_links text
+  created_at datetime
+  updated_at datetime
+}
+
+Table upvotes {
+  id int
+  user_id int
+  answer_id int
+  created_at datetime
+  updated_at datetime
+}
+
+Table downvotes {
+  id int
+  user_id int
+  answer_id int
+  created_at datetime
+  updated_at datetime
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+
+Ref: users.id < questions.user_id
+Ref: users.id < answers.user_id
+Ref: questions.id < answers.question_id
+Ref: users.id < upvotes.user_id
+Ref: answers.id < upvotes.answer_id
+Ref: users.id < downvotes.user_id
+Ref: answers.id < downvotes.answer_id
+
