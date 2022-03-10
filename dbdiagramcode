@@ -1,10 +1,10 @@
 Table users {
   id int
   username varchar
-  password varchar
+  hashedPassword varchar
   email varchar
   bio text
-  image_links text
+  image_link varchar
   created_at datetime
   updated_at datetime
 } 
@@ -12,7 +12,9 @@ Table users {
 Table questions {
   id int
   user_id int
-  image_links text
+  image_link1 varchar
+  image_link2 varchar
+  image_link3 varchar
   title varchar
   body text
   created_at datetime
@@ -24,7 +26,9 @@ Table answers {
   user_id int
   question_id int
   body text
-  image_links text
+  image_link1 varchar
+  image_link2 varchar
+  image_link3 varchar
   created_at datetime
   updated_at datetime
 }
@@ -57,3 +61,12 @@ Ref: answers.id < upvotes.answer_id
 Ref: users.id < downvotes.user_id
 Ref: answers.id < downvotes.answer_id
 
+// take every vote record
+// where answer_id matches the 
+// answer id
+// sum them
+
+// 
+// 
+// 
+// 
