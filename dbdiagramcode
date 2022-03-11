@@ -33,17 +33,10 @@ Table answers {
   updated_at datetime
 }
 
-Table upvotes {
+Table votes {
   id int
   user_id int
-  answer_id int
-  created_at datetime
-  updated_at datetime
-}
-
-Table downvotes {
-  id int
-  user_id int
+  value smallint
   answer_id int
   created_at datetime
   updated_at datetime
@@ -56,10 +49,8 @@ Table downvotes {
 Ref: users.id < questions.user_id
 Ref: users.id < answers.user_id
 Ref: questions.id < answers.question_id
-Ref: users.id < upvotes.user_id
-Ref: answers.id < upvotes.answer_id
-Ref: users.id < downvotes.user_id
-Ref: answers.id < downvotes.answer_id
+Ref: users.id < votes.user_id
+Ref: answers.id < votes.answer_id
 
 // take every vote record
 // where answer_id matches the 
@@ -69,4 +60,4 @@ Ref: answers.id < downvotes.answer_id
 // 
 // 
 // 
-// 
+//
