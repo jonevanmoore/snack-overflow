@@ -62,7 +62,7 @@ router.post('/signup', validateUser, csrfProtection, asyncHandler( async(req, re
       title: 'Sign Up',
       user,
       errors,
-      csrfToken: req.csrfToken(),
+      token: req.csrfToken(),
     });
   }
 }));
