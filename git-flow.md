@@ -47,7 +47,7 @@ This will allow us to handle merge conflicts on a rolling basis
 ## Step 7: (Optional) Delete feature branch
 
 `git branch -d [feature-name]` -> this only deletes locally
-`git push origin --delete [feature-name]` -> ONLY AFTER PR APPROVED! This will importantly not delete the history, however.
+`git push origin --delete [feature-name]` -> ONLY AFTER PR APPROVED! 
 
 ## PS
 
