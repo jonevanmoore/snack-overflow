@@ -1,4 +1,7 @@
 'use strict';
+
+const question = require("./question");
+
 module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define('Answer', {
     user_id: DataTypes.INTEGER,
@@ -8,8 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     image_link2: DataTypes.STRING,
     image_link3: DataTypes.STRING
   }, {});
-  Answer.associate = function(models) {
+  Answer.associate = function (models) {
     // associations can be defined here
+    Answer.belongsTo(models.User, { foreignKey: 'user_id' })
+    Answer.belongsTo(models.Question, { foreignKey: 'question_id' })
+    Answer.hasMany(models.Vote, { foreignKey: 'answer_id' })
   };
   return Answer;
 };
