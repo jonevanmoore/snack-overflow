@@ -15,7 +15,9 @@ Time to work on a feature!
 
 `git commit -m "[message]"`
 
-`git push` -> this sends your branch to github. I do this at least at the start and at the end. Might as well do as often as you commit to backup code.
+`git push --set-upstream origin [feature-name]` -> this sends your branch to github. I do this at least at the start and at the end. Might as well do as often as you commit to backup code.
+
+`git push` will work after that
 
 ## Step 4: create a pull request on github
 
