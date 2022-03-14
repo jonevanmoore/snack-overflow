@@ -12,7 +12,7 @@ The above command combines:
 `git checkout [new-branch]`
 
 Similarly, you can also use
-`git switch -c [new-branch]`
+`git switch -c [new-branch]` instead of `git checkout -b [new-branch]`
 
 ## Step 2: do stuff
 
