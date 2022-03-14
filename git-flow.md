@@ -3,7 +3,7 @@ Time to work on a feature!
 
 ## Step 1: create a branch from `main`
 
-`git -b main`
+`git checkout main` OR `git switch main`
 
 `git checkout -b [feature-name]`
 
@@ -23,13 +23,13 @@ create PR and await approval
 
 ## Step 5: ALL PARTIES UPDATE LOCAL MAIN
 
-`git -b main`
+`git checkout main` OR `git switch main`
 
 `git pull`
 
 ## Step 6: ALL OTHER PARTIES MERGE MAIN INTO CURRENT FEATURE BRANCHES
 
-`git -b [your-current-feature-branch]`
+`git checkout [your-current-feature-branch]` OR `switch`
 
 `git merge main` -> after pulling local main up-to-date
 
@@ -40,7 +40,4 @@ This will allow us to handle merge conflicts on a rolling basis
 `git branch -d [feature-name]` -> this only deletes locally
 `git push origin --delete [feature-name]` -> ONLY AFTER PR APPROVED! This will importantly not delete the history, however.
 
-## PS
 
-`git -b` is short for
-`git branch` — both work
