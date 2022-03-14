@@ -5,7 +5,14 @@ Time to work on a feature!
 
 `git checkout main` OR `git switch main`
 
-`git checkout -b [feature-name]` creates a new branch
+`git checkout -b [feature-name]` creates a new branch and switches to it
+
+The above command combines: 
+`git branch [new-branch]`
+`git checkout [new-branch]`
+
+Similarly, you can also use
+`git switch -c [new-branch]`
 
 ## Step 2: do stuff
 
