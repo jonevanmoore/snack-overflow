@@ -13,17 +13,18 @@ html
       div(class="nav_bar_content")
         div(class="list")
           div(class="nav_bar_left")
-            div(class="logo-title")
-              li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="35px" height="35px")
-              li Snack
-                strong Overflow
+            div.logo-title: a(href="/" class="homepage_link")
+              div.logo-title-alignment
+                li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="35px" height="35px")
+                li Snack
+                  strong Overflow
             li: a(href="/questions") Questions
             if locals.authenticated
               li: a(href="/questions/new") Ask a Question
 
           div(class="search_div")
-            span.fa-solid.fa-magnifying-glass
             form(class="search_form" action="/search")
+              span.fa-solid.fa-magnifying-glass
               input(id="search-bar" placeholder="Search Questions")
           div(class="login-logout")
             if locals.authenticated

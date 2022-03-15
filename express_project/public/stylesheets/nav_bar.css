@@ -1,17 +1,17 @@
 nav {
     display: flex;
     justify-content: center;
-    border-bottom: solid black 2px;
+    box-shadow: 10px 3px 3px gainsboro;
 }
 
 .nav_bar_content {
     padding: 10px;
-    max-width: 1350px;
-    width: auto;
+    width: 1350px;
 }
 
 .list{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     list-style: none;
 }
@@ -25,12 +25,21 @@ nav {
     justify-content: space-between;
     align-items: center;
     font-family: Helvetica;
-    width: 410px;
     flex-shrink: 0;
     flex-grow: 0;
 }
+.nav_bar_left > * {
+    margin: 0 10px;
+}
 
 .logo-title {
+    display: flex;
+    align-items: center;
+}
+.homepage_link {
+    text-decoration: none;
+}
+.logo-title-alignment {
     display: flex;
     align-items: center;
 }
@@ -52,23 +61,22 @@ nav {
     flex-basis: 750px;
     flex-shrink: 1;
     flex-grow: 1;
-    width: 750px;
+    margin: 0px 10px;
 }
 #search-bar {
-    width: auto;
+    width: 90%;
     border: black 1px solid;
     border-radius: 3px;
     padding: 8px 9px 8px 32px;
 }
-#search-bar:focus {
-    box-shadow: 0 0 5 gray;
-}
+
 .search_form {
     display: inline-block;
-    width: auto;
+    width: 100%;
 }
 .fa-solid {
     position: relative;
+    top: 1px;
     left: 25px;
     color: darkgray;
 }
