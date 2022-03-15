@@ -24,10 +24,23 @@ const questionValidator = [
         .withMessage("Title must be 255 characters or fewer."),
     check("body")
         .exists({checkFalsy: true})
-        .withMessage("Please input a body.")
+        .withMessage("Please input a body."),
+    check("image_link1")
+        .optional({checkFalsy: true})
+        .isURL({checkFalsy: true})
+        .withMessage("Please use an image URL (1)."),
+    check("image_link2")
+        .optional({checkFalsy: true})
+        .isURL({checkFalsy: true})
+        .withMessage("Please use an image URL (2)."),
+    check("image_link3")
+        .optional({checkFalsy: true})
+        .isURL({checkFalsy: true})
+        .withMessage("Please use an image URL (3).")
+
 ];
 
-router.post('/new', questionValidator, csrfProtection, asyncHandler( async(req, res, next) => {
+router.post('/new', csrfProtection, questionValidator, asyncHandler( async(req, res, next) => {
     const {title, body, image_link1, image_link2, image_link3} = req.body;
     const question = {
         user_id: res.locals.user.id,

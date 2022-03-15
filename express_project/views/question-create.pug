@@ -2,8 +2,9 @@ extends layout
 
 block content
     if errors
-        error in errors
-            pre= error
+        ul.errors
+            each error in errors
+                li.error= error
     form(action="/questions/new" method="POST")
         input(type="hidden" name="_csrf" value=token)
         div
