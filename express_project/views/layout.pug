@@ -6,26 +6,30 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/nav_bar.css')
         link(rel='icon' href='/snack_overflow_logo.png')
-        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css")
+        script(src="https://kit.fontawesome.com/55a10d2b42.js" crossorigin="anonymous")
 
   body
-    nav(class="nav_bar")
-      ul(class="list")
-        div(class="logo_with_text")
-          li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="35px" height="35px")
-          li Snack
-            strong Overflow
-        div(class="question-div")
-          li: a(href="/questions") Questions
-        div(class="search_div")
-          i(class="fa-solid fa-magnifying-glass")
-          form(action="/search")
-            input(id="search-bar" placeholder="Search Questions")
-        div(class="login-logout")
-          if locals.authenticated
-            li: a(href=`/users/${locals.user.id}`) Profile
-            li: a(href="/users/logout") Logout
-          else
-            li: a(href="/users/login") Login
-            li: a(href="/users/signup") Sign Up
+    nav
+      div(class="nav_bar_content")
+        ul(class="list")
+          div(class="nav_bar_left")
+            div(class="logo-title")
+              li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="35px" height="35px")
+              li Snack
+                strong Overflow
+            li: a(href="/questions") Questions
+            if locals.authenticated
+              li: a(href="/questions/new") Ask a Question
+
+          div(class="search_div")
+            span.fa-solid.fa-magnifying-glass
+            form(class="search_form" action="/search")
+              input(id="search-bar" placeholder="Search Questions")
+          div(class="login-logout")
+            if locals.authenticated
+              li: a(href=`/users/${locals.user.id}`) Profile
+              li: a(href="/users/logout") Logout
+            else
+              li: a(href="/users/login") Login
+              li: a(href="/users/signup") Sign Up
     block content

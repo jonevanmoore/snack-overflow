@@ -1,6 +1,13 @@
-.nav_bar {
+nav {
+    display: flex;
+    justify-content: center;
     border-bottom: solid black 2px;
+}
+
+.nav_bar_content {
     padding: 15px;
+    max-width: 1350px;
+    width: auto;
 }
 
 .list{
@@ -10,14 +17,22 @@
     justify-content: space-around;
 }
 
-.question-div > li > a {
+.nav_bar_left > li > a {
     text-decoration: none;
 }
 
-.logo_with_text {
+.nav_bar_left {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-family: Helvetica;
+    width: 410px;
+    flex-shrink: 0;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
 }
 
 .login-logout {
@@ -25,6 +40,7 @@
     align-items: center;
     width: 120px;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 .login-logout > li > a {
     text-decoration: none;
@@ -32,15 +48,19 @@
     align-items: center;
 }
 #search-bar {
-    width: 350px;
+    width: 750px;
     border: black 1px solid;
     border-radius: 3px;
     padding: 8px 9px 8px 32px;
+    flex-basis: fill;
 }
 #search-bar:focus {
     box-shadow: 0 0 5 gray;
 }
-
+.search_form {
+    display: inline-block;
+}
 .fa-solid {
-    size: 100px;
+    position: relative;
+    left: 10px
 }
