@@ -123,6 +123,28 @@ router.post('/logout', (req, res) => {
   logoutUser(req, res);
 });
 
+router.get('/demologin', csrfProtection, asyncHandler(async (req, res, next) => {
+  const user = await User.findByPk(1);
+  let errors = [];
+
+  if (user) {
+    loginUser(req, res, user);
+    return res.redirect('/');
+  }
+
+  errors.push('Login failed: no user#1');
+    
+  res.render('user-login', {
+    title: 'Login',
+    errors,
+    token: req.csrfToken(),
+  });
+}));
+
+router.post('/logout', (req, res) => {
+  logoutUser(req, res);
+});
+
 router.get('/logout', (req, res) => {
   logoutUser(req, res, '/users/login')
 });
