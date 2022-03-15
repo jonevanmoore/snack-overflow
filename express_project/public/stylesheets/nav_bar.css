@@ -1,0 +1,14 @@
+.nav_bar {
+    border-bottom: solid black 2px;
+}
+
+.list{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-around;
+}
+
+.fa-solid {
+    size: 100px;
+}

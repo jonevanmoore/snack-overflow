@@ -6,21 +6,21 @@ const loginUser = (req, res, user) => {
   }
 };
 
-const restoreUser = async (req,res,next) => {
+const restoreUser = async (req, res, next) => {
   console.log(req.session);
 
-  if( req.session.auth ){
+  if (req.session.auth) {
     const { userId } = req.session.auth;
 
     try {
       const user = await User.findByPk(userId);
 
-      if( user ){
+      if (user) {
         res.locals.authenticated = true;
         res.locals.user = user;
         next()
       }
-    } catch( e ) {
+    } catch (e) {
       res.locals.authenticated = false;
       next(e);
     }
@@ -30,8 +30,15 @@ const restoreUser = async (req,res,next) => {
   }
 }
 
-const logoutUser = (req, res) => {
-  delete req.session.auth;
+const logoutUser = (req, res, path = null) => {
+  req.session.destroy(e => {
+    if (e) {
+      console.log(e)
+    }
+    if (path) {
+      res.redirect(path)
+    }
+  })
 }
 
 module.exports = {

@@ -119,18 +119,12 @@ router.post('/login', csrfProtection, loginValidators,
     });
   }));
 
-// const logout = (req, res) => {
-//   logoutUser(req, res);
-//   res.redirect('/');
-// }
-
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
 });
 
-router.get('/logout', csrfProtection, (req, res) => {
-  logoutUser(req, res);
-  res.render('user-login', { token: req.csrfToken() })
+router.get('/logout', (req, res) => {
+  logoutUser(req, res, '/users/login')
 });
 
 module.exports = router;

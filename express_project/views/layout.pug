@@ -4,19 +4,27 @@ html
       block head
         title="Snack Overflow"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/nav_bar.css')
         link(rel='icon' href='/snack_overflow_logo.png')
-
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css")
 
   body
-    nav
-      ul
-        li Logo
-        li Questions
-        li Search Bar
-        if locals.authenticated
-          li: a(href=`/users/${locals.user.id}`) Profile
-          li: a(href="/users/logout") Logout
-        else
-          li: a(href="/users/login") Login
-          li: a(href="/users/signup") Sign Up
+    nav(class="nav_bar")
+      ul(class="list")
+        div(class="logo_with_text")
+          li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="50px" height="50px")
+          li Snack Overflow
+        div
+          li Questions
+        div(class="search_div")
+          i(class="fa-solid fa-magnifying-glass")
+          form(action="/search")
+            input(placeholder="Search Questions")
+        div
+          if locals.authenticated
+            li: a(href=`/users/${locals.user.id}`) Profile
+            li: a(href="/users/logout") Logout
+          else
+            li: a(href="/users/login") Login
+            li: a(href="/users/signup") Sign Up
     block content
