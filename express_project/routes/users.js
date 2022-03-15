@@ -8,43 +8,43 @@ let router = express.Router();
 const { loginUser, logoutUser } = require('../auth');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
-const csrfProtection = csrf({cookie: true});
+const csrfProtection = csrf({ cookie: true });
 
 const validateUser = [
   check("username")
-  .exists({checkFalsy: true})
-  .withMessage("Please use an appropriate username.")
-  .isLength({max: 20})
-  .withMessage("Username is too long."),
+    .exists({ checkFalsy: true })
+    .withMessage("Please use an appropriate username.")
+    .isLength({ max: 20 })
+    .withMessage("Username is too long."),
   check("email")
-  .exists({checkFalsy: true})
-  .withMessage("Please use an appropriate email address."),
+    .exists({ checkFalsy: true })
+    .withMessage("Please use an appropriate email address."),
   check("password")
-  .exists({checkFalsy: true})
-  .withMessage("Please use an appropriate password."),
+    .exists({ checkFalsy: true })
+    .withMessage("Please use an appropriate password."),
   check("confirm_password")
-  .custom((value, { req }) => {
-    if (value !== req.body.password) {
-      throw new Error('Password confirmation does not match password');
-    }
-    // Indicates the success of this synchronous custom validator
-    return true;
-  })
-  .withMessage("Please use the same password."),
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Password confirmation does not match password');
+      }
+      // Indicates the success of this synchronous custom validator
+      return true;
+    })
+    .withMessage("Please use the same password."),
 ];
 /*GET /signup form */
 router.get('/signup', csrfProtection, (req, res) => {
-  res.render('signup', {token: req.csrfToken()})
+  res.render('signup', { token: req.csrfToken() })
 });
 /*POST /signup */
-router.post('/signup', validateUser, csrfProtection, asyncHandler( async(req, res) => {
-  const {username, password, email} = req.body;
+router.post('/signup', validateUser, csrfProtection, asyncHandler(async (req, res) => {
+  const { username, password, email } = req.body;
   const user = User.build({
     username,
     email,
@@ -97,11 +97,11 @@ router.post('/login', csrfProtection, loginValidators,
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
-      const user = await User.findOne({ where: {email} });
-      if( user ) {
+      const user = await User.findOne({ where: { email } });
+      if (user) {
         const passwordMatches = await bcrypt.compare(password, user.hashed_password.toString());
-        if( passwordMatches ){
-          loginUser(req, res, user);           
+        if (passwordMatches) {
+          loginUser(req, res, user);
 
           return res.redirect('/');
         }
@@ -121,15 +121,16 @@ router.post('/login', csrfProtection, loginValidators,
 
 const logout = (req, res) => {
   logoutUser(req, res);
-  res.redirect('/login');
+  res.redirect('/users/login');
 }
 
 router.post('/logout', (req, res) => {
-  logout(req,res);
+  logout(req, res);
 });
 
-router.get('/logout', (req,res) => {
-  logout(req,res);
+router.get('/logout', (req, res) => {
+  logout(req, res);
+  res.redirect('/')
 });
 
 module.exports = router;

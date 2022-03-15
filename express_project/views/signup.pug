@@ -1,20 +1,23 @@
-if errors
-    each error in errors 
-        pre= error
+extends layout
 
-form(action="/users/signup" method="POST")
-    input(type="hidden" name="_csrf" value=token)
-    div 
-        label(for="username") Username
-        input(type="text" name="username")
-    div
-        label(for="email") Email
-        input(type="text" name="email")
-    div 
-        label(for="password") Password
-        input(type="password" name="password")
-    div 
-        label(for="confirm_password") Confirm Password 
-        input(type="password" name="confirm_password")
-    div 
-        button Sign Up
+block content
+    if errors
+        each error in errors
+            pre= error
+
+    form(action="/users/signup" method="POST")
+        input(type="hidden" name="_csrf" value=token)
+        div
+            label(for="username") Username
+            input(type="text" name="username")
+        div
+            label(for="email") Email
+            input(type="text" name="email")
+        div
+            label(for="password") Password
+            input(type="password" name="password")
+        div
+            label(for="confirm_password") Confirm Password
+            input(type="password" name="confirm_password")
+        div
+            button Sign Up

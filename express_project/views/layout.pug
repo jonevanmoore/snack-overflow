@@ -2,7 +2,21 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Snack Overflow"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='icon' href='/snack_overflow_logo.png')
+
+
   body
+    nav
+      ul
+        li Logo
+        li Questions
+        li Search Bar
+        if locals.authenticated
+          li: a(href=`/users/${locals.user.id}`) Profile
+          li: a(href="/users/logout") Logout
+        else
+          li: a(href="/users/login") Login
+          li: a(href="/users/signup") Sign Up
     block content
