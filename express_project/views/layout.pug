@@ -12,15 +12,16 @@ html
     nav(class="nav_bar")
       ul(class="list")
         div(class="logo_with_text")
-          li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="50px" height="50px")
-          li Snack Overflow
-        div
-          li Questions
+          li(id="so_logo"): img(src="/snack_overflow_logo.png", alt="snack overflow" width="35px" height="35px")
+          li Snack
+            strong Overflow
+        div(class="question-div")
+          li: a(href="/questions") Questions
         div(class="search_div")
           i(class="fa-solid fa-magnifying-glass")
           form(action="/search")
-            input(placeholder="Search Questions")
-        div
+            input(id="search-bar" placeholder="Search Questions")
+        div(class="login-logout")
           if locals.authenticated
             li: a(href=`/users/${locals.user.id}`) Profile
             li: a(href="/users/logout") Logout
