@@ -1,7 +1,10 @@
 extends layout
 
 block content
-    form(action="/questions" method="POST")
+    if errors
+        error in errors
+            pre= error
+    form(action="/questions/new" method="POST")
         input(type="hidden" name="_csrf" value=token)
         div
             label(for="title") Title 
@@ -10,8 +13,14 @@ block content
             label(for="body") Body 
             textarea(name="body" required)
         div 
-            label(for="image_link1") Image
-            input(type="text" name="image_link1")
+            label(for="image_link1") Image URL
+            input(type="text" name="image_link1" placeholder="...")
+        div 
+            label(for="image_link2") Image URL
+            input(type="text" name="image_link2" placeholder="...")
+        div 
+            label(for="image_link3") Image URL
+            input(type="text" name="image_link3" placeholder="...")
         div 
             button(type="submit") Submit Question 
             button(type="reset") Cancel
