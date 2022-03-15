@@ -5,7 +5,7 @@ const { User } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 let router = express.Router();
 
-const { loginUser } = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -118,5 +118,18 @@ router.post('/login', csrfProtection, loginValidators,
       token: req.csrfToken(),
     });
   }));
+
+const logout = (req, res) => {
+  logoutUser(req, res);
+  res.redirect('/login');
+}
+
+router.post('/logout', (req, res) => {
+  logout(req,res);
+});
+
+router.get('/logout', (req,res) => {
+  logout(req,res);
+});
 
 module.exports = router;
