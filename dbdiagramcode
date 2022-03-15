@@ -1,7 +1,7 @@
 Table users {
   id int
   username varchar
-  hashedPassword varchar
+  hashed_password varchar
   email varchar
   bio text
   image_link varchar
