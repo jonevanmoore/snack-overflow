@@ -1,14 +1,17 @@
-if errors
-  each error in errors
-    pre= error
+extends layout
 
-form(action="/users/login" method="POST")
-  input(type="hidden" name="_csrf" value=token)
-  div
-    label(for="email") Email
-    input(type="text" name="email")
-  div
-    label(for="password") Password
-    input(type="password" name="password")
-  div
-    button Login
+block content
+  if errors
+    each error in errors
+      pre= error
+
+  form(action="/users/login" method="POST")
+    input(type="hidden" name="_csrf" value=token)
+    div
+      label(for="email") Email
+      input(type="text" name="email" required)
+    div
+      label(for="password") Password
+      input(type="password" name="password" required)
+    div
+      button Login

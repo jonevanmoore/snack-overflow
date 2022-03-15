@@ -1,0 +1,4 @@
+npx sequelize model:generate --name User --attributes username:string,hashed_password:string,email:string,bio:text,image_link:string
+npx sequelize model:generate --name Question --attributes user_id:integer,image_link1:string,image_link2:string,image_link3:string,title:string,body:text
+npx sequelize model:generate --name Answer --attributes user_id:integer,question_id:integer,body:text,image_link1:string,image_link2:string,image_link3:string
+npx sequelize model:generate --name Vote --attributes user_id:integer,value:integer,answer_id:integer

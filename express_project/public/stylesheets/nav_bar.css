@@ -1,0 +1,46 @@
+.nav_bar {
+    border-bottom: solid black 2px;
+    padding: 15px;
+}
+
+.list{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-around;
+}
+
+.question-div > li > a {
+    text-decoration: none;
+}
+
+.logo_with_text {
+    display: flex;
+    align-items: center;
+    font-family: Helvetica;
+}
+
+.login-logout {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    justify-content: space-between;
+}
+.login-logout > li > a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+#search-bar {
+    width: 350px;
+    border: black 1px solid;
+    border-radius: 3px;
+    padding: 8px 9px 8px 32px;
+}
+#search-bar:focus {
+    box-shadow: 0 0 5 gray;
+}
+
+.fa-solid {
+    size: 100px;
+}
