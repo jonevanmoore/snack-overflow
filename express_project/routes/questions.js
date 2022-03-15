@@ -9,7 +9,8 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
     if (req.session.auth) {
-        res.render('question-create', {token: req.csrfToken()});
+        const question = {};
+        res.render('question-create', {question, token: req.csrfToken()});
     } else {
         res.render('user-login', {title: 'Login to ask a question', token: req.csrfToken()})
     }
@@ -28,19 +29,19 @@ const questionValidator = [
 
 router.post('/new', questionValidator, csrfProtection, asyncHandler( async(req, res, next) => {
     const {title, body, image_link1, image_link2, image_link3} = req.body;
-    const question = Question.build({
+    const question = {
         user_id: res.locals.user.id,
         title,
         body,
         image_link1,
         image_link2,
         image_link3
-    });
+    };
 
     const validateErrors = validationResult(req);
 
     if (validateErrors.isEmpty()) {
-        const newQ = await question.save();
+        const newQ = await Question.create(question);
         res.redirect(`/questions/${newQ.id}`)
     } else {
         const errors = validateErrors.array().map(error => error.msg);
