@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+    ul
+        each question in questions 
+            div 
+                li= question.title 
+            div 
+                li= question.body

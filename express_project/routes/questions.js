@@ -7,6 +7,11 @@ const router = express.Router();
 const csrfProtection = csrf({cookie: true});
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
+router.get('/', csrfProtection, async(req, res) => {
+    const questions = await Question.findAll();
+    res.render('questions-read', {questions});
+});
+
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
     if (req.session.auth) {
         const question = {};
