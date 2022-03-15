@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    form(action="/questions" method="POST")
+        input(type="hidden" name="_csrf" value=token)
+        div
+            label(for="title") Title 
+            input(type="text" name="title" required)
+        div 
+            label(for="body") Body 
+            textarea(name="body" required)
+        div 
+            label(for="image_link1") Image
+            input(type="text" name="image_link1")
+        div 
+            button Create Question 
+            button Cancel
