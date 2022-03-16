@@ -1,15 +1,21 @@
 body {
   background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;  
+  font-family: helvetica;
 }
 
 
 .login-container {
   width: 278px;
-  height: 558px;
+  height: 425px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  margin-top: 250px;
 }
 
 .login-logo {
@@ -17,4 +23,45 @@ body {
   width: 37px;
 }
 
+.login-form-container {
+  width: 278px;
+  height: 238px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0px 10px 25px gray;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.login-form-container > * {
+  width: 230px;
+}
+
+.login-input {
+  padding: 8px 9px;
+  width: auto;
+}
+
+.demo-login-button {
+  width: 278px;
+  padding: 12px;
+  margin: 4px 0px;
+  border: none;
+  border-radius: 4px;
+  background-color: #385499;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.demo-login-button:hover {
+  background-color: #2d437b;
+}
+
+.fa-user {
+  margin: 0px 4px;
+}
