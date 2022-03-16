@@ -15,7 +15,7 @@ block content
       .edit-time
         //- if question.updatedAt - question.createdAt > 0
         span Updated
-        text= question.updatedAt.toLocaleString('en-US', options) 
+        text= question.updatedAt.toLocaleString('en-US', options)
       //-.edit-time= question.updatedAt - question.createdAt > 0 ? 'Updated ' + question.updatedAt.toLocaleString('en-US', options) : ''
     .post
       .sidebar
@@ -35,4 +35,9 @@ block content
             .content
             .answer-user
     .new-answer-form
-            
+            h2 Answer Question
+            form(action=`/answers` method="POST")
+                input(type="hidden" name="_csrf" value=token)
+                input(type="hidden" name="question_id" value=question.id)
+                textarea(name="body")
+                button Submit

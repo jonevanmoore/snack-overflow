@@ -4,44 +4,44 @@ const { check, validationResult } = require('express-validator');
 const { Question, User, Answer, Vote } = require('../db/models');
 const router = express.Router();
 
-const csrfProtection = csrf({cookie: true});
+const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
-router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
+router.get('/new', csrfProtection, asyncHandler(async (req, res) => {
     if (req.session.auth) {
         const question = {};
-        res.render('question-create', {question, token: req.csrfToken()});
+        res.render('question-create', { question, token: req.csrfToken() });
     } else {
-        res.render('user-login', {title: 'Login to ask a question', token: req.csrfToken()})
+        res.render('user-login', { title: 'Login to ask a question', token: req.csrfToken() })
     }
 }));
 
 const questionValidator = [
     check("title")
-        .exists({checkFalsy: true})
+        .exists({ checkFalsy: true })
         .withMessage("Please input a title.")
-        .isLength({max: 255})
+        .isLength({ max: 255 })
         .withMessage("Title must be 255 characters or fewer."),
     check("body")
-        .exists({checkFalsy: true})
+        .exists({ checkFalsy: true })
         .withMessage("Please input a body."),
     check("image_link1")
-        .optional({checkFalsy: true})
-        .isURL({checkFalsy: true})
+        .optional({ checkFalsy: true })
+        .isURL({ checkFalsy: true })
         .withMessage("Please use an image URL (1)."),
     check("image_link2")
-        .optional({checkFalsy: true})
-        .isURL({checkFalsy: true})
+        .optional({ checkFalsy: true })
+        .isURL({ checkFalsy: true })
         .withMessage("Please use an image URL (2)."),
     check("image_link3")
-        .optional({checkFalsy: true})
-        .isURL({checkFalsy: true})
+        .optional({ checkFalsy: true })
+        .isURL({ checkFalsy: true })
         .withMessage("Please use an image URL (3).")
 
 ];
 
-router.post('/new', csrfProtection, questionValidator, asyncHandler( async(req, res, next) => {
-    const {title, body, image_link1, image_link2, image_link3} = req.body;
+router.post('/new', csrfProtection, questionValidator, asyncHandler(async (req, res, next) => {
+    const { title, body, image_link1, image_link2, image_link3 } = req.body;
     const question = {
         user_id: res.locals.user.id,
         title,
@@ -66,28 +66,34 @@ router.post('/new', csrfProtection, questionValidator, asyncHandler( async(req, 
     }
 }));
 
-router.get('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res, next) => {
-  const questionId = req.params.id; 
-  
-  const question = await Question.findOne({
-    where: { id: Number(questionId) },
-    include: [ {
-      model: User,
-      attributes: ['username', 'image_link', 'id']
-    }, {
-      model: Answer,
-      include: Vote
-    } ]
-  });
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
 
-  if( question ){
-    //console.log( JSON.stringify(question) );
-    res.render('question', { token: req.csrfToken(), question });  
-  } else {
-    const error = new Error('Question not found');
-    error.status = 404;
-    next(error); 
-  }
+    const question = await Question.findOne({
+        where: { id: Number(questionId) },
+        include: [{
+            model: User,
+            attributes: ['username', 'image_link', 'id']
+        }, {
+            model: Answer,
+            include: Vote
+        }]
+    });
+
+    if (question) {
+        //console.log( JSON.stringify(question) );
+        res.render('question', { token: req.csrfToken(), question });
+    } else {
+        const error = new Error('Question not found');
+        error.status = 404;
+        next(error);
+    }
 }));
+
+router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+    const { user_id, question_id, body, image_link1, image_link2, image_link3 } = req.body
+
+    const newAnswer = await Answer.create(req.body)
+}))
 
 module.exports = router;
