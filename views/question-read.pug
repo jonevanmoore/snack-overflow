@@ -9,7 +9,9 @@ block content
         //-         p #{questions.Vote.voteTotal} votes
         //-     div.answers 
         //-         p #{questions.Answer.length} answers
-        div.questions-read 
-            h2= question.title 
-            p= question.preview 
-            p= question.User.username 
+        .questionBox 
+            h= question.title 
+            .Qpreview= question.preview 
+            .Qusername Posted by #{question.User.username}
+            - const options = { month: 'short', day: 'numeric', year: 'numeric'}
+            .Qoptions= question.createdAt.toLocaleString('en-US', options)
