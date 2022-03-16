@@ -9,7 +9,7 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 
 router.get('/', csrfProtection, async(req, res) => {
     const questions = await Question.findAll();
-    res.render('questions-read', {questions});
+    res.render('question-read', {questions});
 });
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
