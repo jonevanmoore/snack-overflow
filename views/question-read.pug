@@ -10,7 +10,7 @@ block content
         //-     div.answers 
         //-         p #{questions.Answer.length} answers
         .questionBox 
-            h= question.title 
+            a(href=`/questions/${question.id}`)= question.title 
             .Qpreview= question.preview 
             .Qusername Posted by #{question.User.username}
             - const options = { month: 'short', day: 'numeric', year: 'numeric'}
