@@ -1,0 +1,20 @@
+body {
+  background-color: whitesmoke;
+}
+
+
+.login-container {
+  width: 278px;
+  height: 558px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-logo {
+  height: 37px;
+  width: 37px;
+}
+
+
