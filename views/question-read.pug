@@ -1,8 +1,15 @@
 extends layout 
 
-block content
-    ul 
-        each question in questions 
-            li= question.title 
-            li= question.body 
-    
+block content 
+    h1.totalQs #{questions.length} Questions 
+    each question in questions 
+        hr 
+        //- div.qStats 
+        //-     div.votes 
+        //-         p #{questions.Vote.voteTotal} votes
+        //-     div.answers 
+        //-         p #{questions.Answer.length} answers
+        div.questions-read 
+            h2= question.title 
+            p= question.preview 
+            p= question.User.username 

@@ -1,0 +1,10 @@
+.questions-read {
+    /* background-color: orange; */
+    width: 60%;
+}
+
+.totalQs {
+    /* display: flex; */
+    position: relative;
+    left: -570px;
+}

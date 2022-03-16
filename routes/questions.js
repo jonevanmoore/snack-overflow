@@ -8,7 +8,11 @@ const csrfProtection = csrf({cookie: true});
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 router.get('/', csrfProtection, async(req, res) => {
-    const questions = await Question.findAll();
+    const questions = await Question.findAll({include: User});
+    questions.preview = questions.body.slice(141).replace(/\s\S*$/, "");
+    if (questions.preview !== questions.body) {
+        questions.preview += "...";
+    }
     res.render('question-read', {questions});
 });
 
