@@ -1,7 +1,7 @@
 const express = require('express');
 const csrf = require('csurf');
 const { check, validationResult } = require('express-validator');
-const { Question, User } = require('../db/models');
+const { Question, User, Answer, Vote } = require('../db/models');
 const router = express.Router();
 
 const csrfProtection = csrf({cookie: true});
@@ -64,6 +64,30 @@ router.post('/new', csrfProtection, questionValidator, asyncHandler( async(req, 
             token: req.csrfToken()
         });
     }
+}));
+
+router.get('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res, next) => {
+  const questionId = req.params.id; 
+  
+  const question = await Question.findOne({
+    where: { id: Number(questionId) },
+    include: [ {
+      model: User,
+      attributes: ['username', 'image_link', 'id']
+    }, {
+      model: Answer,
+      include: Vote
+    } ]
+  });
+
+  if( question ){
+    //console.log( JSON.stringify(question) );
+    res.render('question', { token: req.csrfToken(), question });  
+  } else {
+    const error = new Error('Question not found');
+    error.status = 404;
+    next(error); 
+  }
 }));
 
 module.exports = router;
