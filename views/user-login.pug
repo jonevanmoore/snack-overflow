@@ -13,15 +13,17 @@ block content
     form.login-form-container(action='/users/login' method='POST')
       input(type='hidden' name='_csrf' value=token)
       div.login-email-div
-        div.login-email-label Email
+        div.login-label Email
         input.login-input(type='text' name='email' required)
       div.login-password-div
-        div.login-password-label Password
+        div.login-label Password
         input.login-input(type='password' name='password' required)
-      button Log in
+      button.login-button Log in
     div.login-links
-      text Don't have an account?
-      a(href='/users/signup') Sign Up
+      div.login-links-top
+        text Don't have an account?
+        a(href='/users/signup') Sign Up
       div.login-links-bottom
         text Are you an employer?
-        a(href='') Check us out on GitHub!
+        a(href='https://github.com/jonevanmoore/snack-overflow-group-project' target='_blank') Check out our GitHub!
+          i.fas.fa-arrow-up-right-from-square
