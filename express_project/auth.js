@@ -1,9 +1,13 @@
 const { User } = require('./db/models');
 
-const loginUser = (req, res, user) => {
+const loginUser = (req, res, user, path = null) => {
   req.session.auth = {
     userId: user.id
   }
+
+  req.session.save( () => {
+    if (path) res.redirect(path);
+  });
 };
 
 const restoreUser = async (req, res, next) => {

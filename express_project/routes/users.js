@@ -57,8 +57,7 @@ router.post('/signup', validateUser, csrfProtection, asyncHandler(async (req, re
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashed_password = hashedPassword;
     await user.save();
-    loginUser(req, res, user);
-    res.redirect('/');
+    loginUser(req, res, user, '/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('signup', {
@@ -101,9 +100,9 @@ router.post('/login', csrfProtection, loginValidators,
       if (user) {
         const passwordMatches = await bcrypt.compare(password, user.hashed_password.toString());
         if (passwordMatches) {
-          loginUser(req, res, user);
+          loginUser(req, res, user, '/');
 
-          return res.redirect('/');
+          return;
         }
       }
       errors.push('Login failed');
@@ -122,6 +121,29 @@ router.post('/login', csrfProtection, loginValidators,
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
 });
+
+router.get('/demologin', csrfProtection, asyncHandler(async (req, res, next) => {
+  const user = await User.findByPk(1);
+  let errors = [];
+
+  if (user) {
+    loginUser(req, res, user, '/');
+    return;
+  }
+
+  errors.push('Login failed: no user#1');
+    
+  res.render('user-login', {
+    title: 'Login',
+    errors,
+    token: req.csrfToken(),
+  });
+}));
+
+router.post('/logout', (req, res) => {
+  logoutUser(req, res);
+});
+
 
 router.get('/logout', (req, res) => {
   logoutUser(req, res, '/users/login')

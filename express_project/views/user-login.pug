@@ -15,3 +15,24 @@ block content
       input(type="password" name="password" required)
     div
       button Login
+  div: a(href="/users/demologin") Or log in with a demo user...
+
+  div.login-container
+    img.login-logo(src='/snack_overflow_logo.png')
+    button() 
+      i.fa-brands.fa-dailymotion 
+      Log in with Demo User
+    form.login-form-container(action="/users/login" method="POST")
+      div.login-email-div
+        div.login-email-label Email
+        input
+      div.login-password-div
+        div.login-password-label Password
+        input
+      button Log in
+    div.login-links
+      text Don't have an account?
+      a(href='/users/signup') Sign Up
+      div.login-links-bottom
+        text Are you an employer?
+        a(href='') Check us out on GitHub!
