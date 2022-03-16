@@ -10,6 +10,10 @@
   margin-bottom: 8px;
 } 
 
+.title {
+  max-width: 900px;
+}
+
 .title-ask-question-button {
   border-radius: 4px;
   color: white;
@@ -17,6 +21,7 @@
   border: 1px solid rgba(10,149,255,.3); 
   padding: 0px 10px; 
   height: 100%;
+  max-height: 37px;
   position: relative;
   top: 20px;
 }

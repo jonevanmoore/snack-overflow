@@ -21,6 +21,8 @@ block content
       .sidebar
       .content
         .post-body= question.body
+          if question.image_link1
+            img(src=question.image_link1)
         .post-user= question.User.username
     if question.Answers
       each answer in question.Answers
