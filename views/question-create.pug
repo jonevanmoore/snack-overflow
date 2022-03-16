@@ -5,23 +5,24 @@ block content
         ul.errors
             each error in errors
                 li.error= error
-    form(action="/questions/new" method="POST")
-        input(type="hidden" name="_csrf" value=token)
-        div
-            label(for="title") Title 
-            input(type="text" name="title" value=question.title)
-        div 
-            label(for="body") Body 
-            textarea(name="body")= question.body 
-        div 
-            label(for="image_link1") Image URL
-            input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
-        div 
-            label(for="image_link2") Image URL
-            input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
-        div 
-            label(for="image_link3") Image URL
-            input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
-        div 
-            button(type="reset") Cancel
-            button(type="submit") Submit Question 
+    div(class="questions-create") 
+        form(action="/questions/new" method="POST")
+            input(type="hidden" name="_csrf" value=token)
+            div
+                label(for="title") Title 
+                input(type="text" name="title" value=question.title)
+            div 
+                label(for="body") Body 
+                textarea(name="body")= question.body 
+            div 
+                label(for="image_link1") Image URL
+                input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
+            div 
+                label(for="image_link2") Image URL
+                input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
+            div 
+                label(for="image_link3") Image URL
+                input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
+            div 
+                button(type="reset") Cancel
+                button(type="submit") Submit Question 

@@ -7,7 +7,20 @@ const router = express.Router();
 const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
-router.get('/new', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/', csrfProtection, async(req, res) => {
+    let questions = await Question.findAll({include: User});
+    console.log(typeof(questions), Array.isArray(questions))
+    questions = questions.map(el => {
+        let preview = el.body.slice(0,141);
+        console.log(preview)
+        if (preview.length > 140) preview = preview.replace(/\s\S*$/, "") + "...";
+        el.preview = preview;
+        return el;
+    });
+    res.render('question-read', {questions});
+});
+
+router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
     if (req.session.auth) {
         const question = {};
         res.render('question-create', { question, token: req.csrfToken() });
