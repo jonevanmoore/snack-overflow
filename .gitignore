@@ -131,3 +131,6 @@ dist
 
 # vim swapfiles
 *.swp
+
+# MacOS files
+.DS_Store
