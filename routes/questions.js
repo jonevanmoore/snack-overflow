@@ -11,7 +11,8 @@ router.get('/', csrfProtection, async(req, res) => {
     let questions = await Question.findAll({include: User});
     let qArr = [];
     for (let el of questions) {
-        let preview = el.body.slice(0,141).replace(/\s\S*$/, "")
+        let preview = el.body.slice(0,141);
+        if (preview.length > 140) preview = preview.replace(/\s\S*$/, "");
         if (preview !== el.body) preview += "...";
         qArr.push({
             title: el.title,
