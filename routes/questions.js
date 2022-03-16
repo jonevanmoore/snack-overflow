@@ -90,10 +90,4 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
-router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
-    const { user_id, question_id, body, image_link1, image_link2, image_link3 } = req.body
-
-    const newAnswer = await Answer.create(req.body)
-}))
-
 module.exports = router;

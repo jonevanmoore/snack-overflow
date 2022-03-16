@@ -1,8 +1,9 @@
 nav {
     display: flex;
     justify-content: center;
-    box-shadow: 10px 3px 3px gainsboro; 
+    box-shadow: 10px 3px 3px gainsboro;
     width: 100%;
+    background-color: #F8F9F9;
 }
 
 .nav_bar_content {
