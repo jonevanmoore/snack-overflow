@@ -9,11 +9,17 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 
 router.get('/', csrfProtection, async(req, res) => {
     let questions = await Question.findAll({include: User});
-    questions = questions.map(el => {
-        el.preview = el.body.slice(141).replace(/\s\S*$/, "");
-        if (el.preview !== el.body) el.preview += "...";
-    });
-    res.render('question-read', {questions});
+    let qArr = [];
+    for (let el of questions) {
+        let preview = el.body.slice(0,141).replace(/\s\S*$/, "")
+        if (preview !== el.body) preview += "...";
+        qArr.push({
+            title: el.title,
+            User: el.User,
+            preview
+        });
+    };
+    res.render('question-read', {questions: qArr});
 });
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
