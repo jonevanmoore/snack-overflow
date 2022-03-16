@@ -130,6 +130,7 @@ dist
 .pnp.*
 
 # vim swapfiles
-.swp
+*.swp
 
+# MacOS files
 .DS_Store

@@ -4,35 +4,26 @@ block content
   if errors
     each error in errors
       pre= error
-
-  form(action="/users/login" method="POST")
-    input(type="hidden" name="_csrf" value=token)
-    div
-      label(for="email") Email
-      input(type="text" name="email" required)
-    div
-      label(for="password") Password
-      input(type="password" name="password" required)
-    div
-      button Login
-  div: a(href="/users/demologin") Or log in with a demo user...
-
   div.login-container
     img.login-logo(src='/snack_overflow_logo.png')
-    button() 
-      i.fa-brands.fa-dailymotion 
-      Log in with Demo User
-    form.login-form-container(action="/users/login" method="POST")
+    form(action='/users/demologin')
+      button.demo-login-button(type='submit')
+        i.fas.fa-user
+        text Log in with Demo User
+    form.login-form-container(action='/users/login' method='POST')
+      input(type='hidden' name='_csrf' value=token)
       div.login-email-div
-        div.login-email-label Email
-        input
+        div.login-label Email
+        input.login-input(type='text' name='email' required)
       div.login-password-div
-        div.login-password-label Password
-        input
-      button Log in
+        div.login-label Password
+        input.login-input(type='password' name='password' required)
+      button.login-button Log in
     div.login-links
-      text Don't have an account?
-      a(href='/users/signup') Sign Up
+      div.login-links-top
+        text Don't have an account?
+        a(href='/users/signup') Sign Up
       div.login-links-bottom
         text Are you an employer?
-        a(href='') Check us out on GitHub!
+        a(href='https://github.com/jonevanmoore/snack-overflow-group-project' target='_blank') Check out our GitHub!
+          i.fas.fa-arrow-up-right-from-square
