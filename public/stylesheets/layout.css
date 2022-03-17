@@ -1,0 +1,15 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;  
+  font-family: helvetica;
+  height: 100%;
+}
+
+

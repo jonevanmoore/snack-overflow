@@ -1,5 +1,8 @@
 extends layout
 
+append head
+  link(rel='stylesheet' href='/stylesheets/login.css') 
+
 block content
   if errors
     each error in errors
