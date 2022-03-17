@@ -61,6 +61,24 @@ router.post(`/:id(\\d+)/delete`, async (req, res, next) => {
 
 })
 
+router.put('/:id(\\d+)', async (req, res, next) => {
+    const answer = await Answer.findByPk(Number(req.params.id))
+
+    if (answer) {
+        answer.body = req.body.content
+        console.log(req.body)
+        await answer.save()
+        res.json({
+            answer
+        })
+    } else {
+        res.status(403)
+        res.json({
+            'message': 'unauthorized'
+        })
+    }
+})
+
 
 
 module.exports = router
