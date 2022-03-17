@@ -1,5 +1,9 @@
 extends layout
 
+append head
+  link(rel='stylesheet' href='/stylesheets/question.css')
+  script(src="/javascripts/question.js" type="module" defer)
+
 block content
   .body-content
     .layout
@@ -43,6 +47,8 @@ block content
                 if locals.authenticated && locals.user.id === answer.user_id
                   form(action=`/answers/${answer.id}/delete` method="POST")
                     button Delete
+                  div(class=`edit-answer-form-${answer.id}`)
+                    button.answer-edit(id=`edit-answer-${answer.id}`) Edit
       .new-answer-form
               if locals.authenticated
                 h2 Answer Question
