@@ -33,7 +33,7 @@ block content
               img(src=question.image_link1)
           .post-user= question.User.username
           .post-edit
-            a(href=`/questions/`) Edit 
+            a(href=`/questions/${question.id}/edit`) Edit 
       if question.Answers
         - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers

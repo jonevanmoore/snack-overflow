@@ -107,6 +107,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 }));
 
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(req.params.id);
     if (req.session.auth && question.user_id === res.locals.user.id) {
         res.render('question-edit', { token: req.csrfToken() })
     } else {
@@ -127,10 +128,17 @@ router.post('/:id(\\d+)', csrfProtection, questionValidator, asyncHandler( async
                 image_link1,
                 image_link2,
                 image_link3,
-            })
-            res.render('question-edit', { updatedQ, token: req.csrfToken() })
+            });
+            const validateErrors = validationResult(req);
+            if (validateErrors.isEmpty()) {
+                res.redirect(`/questions/${updatedQ.id}`)
+            }
+            const errors = validateErrors.array().map(error => error.msg);
+            res.render('question-edit', { errors, updatedQ, token: req.csrfToken() })
         } else {
-            
+            const error = new Error('Not authorized');
+            error.status = 401;
+            next(error);
         }
     }
 }));
