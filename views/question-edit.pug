@@ -15,16 +15,15 @@ block content
             textarea(name="body")= question.body 
         div 
             label(for="image_link1") Image URL
-            input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
+            input(type="text" name="image_link1" value=question.image_link1)
         div 
             label(for="image_link2") Image URL
-            input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
+            input(type="text" name="image_link2" value=question.image_link2)
         div 
             label(for="image_link3") Image URL
-            input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
+            input(type="text" name="image_link3" value=question.image_link3)
         div 
             button(type="reset") Cancel
             button(type="submit") Save Changes
-
     form(action=`/questions/${question.id}/delete` method="POST")
-            a(href=`/questions/${question.id}/delete`) Delete
+            button Delete
