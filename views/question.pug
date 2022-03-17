@@ -35,9 +35,10 @@ block content
             .content= answer.body
             .answer-user
     .new-answer-form
-            h2 Answer Question
-            form(action=`/answers` method="POST")
-                input(type="hidden" name="_csrf" value=token)
-                input(type="hidden" name="question_id" value=question.id)
-                textarea(name="body")
-                button Submit
+            if locals.authenticated
+              h2 Answer Question
+              form(action=`/answers` method="POST")
+                  input(type="hidden" name="_csrf" value=token)
+                  input(type="hidden" name="question_id" value=question.id)
+                  textarea(name="body")
+                  button Submit
