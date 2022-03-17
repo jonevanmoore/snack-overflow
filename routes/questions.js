@@ -105,7 +105,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
 router.delete('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res) => {
     const question = await Question.findByPk(req.params.id);
-    if (req.session.auth) {
+    if (req.session.auth && question.user_id === res.locals.user.id) {
         if (question) {
             await question.destroy();
             res.redirect('/');
