@@ -1,5 +1,9 @@
 extends layout
 
+append head
+  link(rel='stylesheet' href='/stylesheets/question.css')
+  script(src="/javascripts/question.js" type="module" defer)
+
 block content
   .body-content
     .layout
@@ -21,13 +25,17 @@ block content
       .post
         .sidebar
         .content
-          .post-body= question.body
+          .post-body
+            - const paragraphs = question.body.split('\n')
+            each paragraph in paragraphs
+              p= paragraph
             if question.image_link1
               img(src=question.image_link1)
           .post-user= question.User.username
           .post-edit
             a(href=`/questions/`) Edit 
       if question.Answers
+        - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers
           div(class=`answer-${answer.id}`)
             .sidebar
@@ -36,11 +44,18 @@ block content
               .downvote-button
             .answer-body
               .content= answer.body
-              .answer-user
+              .answer-user Posted by #{answer.User.username}
+              div
+                if locals.authenticated && locals.user.id === answer.user_id
+                  form(action=`/answers/${answer.id}/delete` method="POST")
+                    button Delete
+                  div(id=`edit-answer-form-${answer.id}`)
+                    button.answer-edit(id=`edit-answer-${answer.id}`) Edit
       .new-answer-form
-              h2 Answer Question
-              form(action=`/answers` method="POST")
-                  input(type="hidden" name="_csrf" value=token)
-                  input(type="hidden" name="question_id" value=question.id)
-                  textarea(name="body")
-                  button Submit
+              if locals.authenticated
+                h2 Answer Question
+                form(action=`/answers` method="POST")
+                    input(type="hidden" name="_csrf" value=token)
+                    input(type="hidden" name="question_id" value=question.id)
+                    textarea(name="body" required)
+                    button Submit

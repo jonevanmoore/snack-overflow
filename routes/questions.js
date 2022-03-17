@@ -89,7 +89,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
             attributes: ['username', 'image_link', 'id']
         }, {
             model: Answer,
-            include: Vote
+            include: [ Vote,{
+              model: User,
+              attributes: ['username', 'image_link', 'id']
+            }]
         }]
     });
 

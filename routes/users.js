@@ -21,7 +21,11 @@ const validateUser = [
     .exists({ checkFalsy: true })
     .withMessage("Please use an appropriate username.")
     .isLength({ max: 20 })
-    .withMessage("Username is too long."),
+    .withMessage("Username is too long.")
+    .custom(value => {
+      return !/\s/.test(value)
+    })
+    .withMessage("Username must not have spaces"),
   check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please use an appropriate email address."),
@@ -132,7 +136,7 @@ router.get('/demologin', csrfProtection, asyncHandler(async (req, res, next) => 
   }
 
   errors.push('Login failed: no user#1');
-    
+
   res.render('user-login', {
     title: 'Login',
     errors,
