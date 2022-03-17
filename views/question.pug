@@ -38,7 +38,7 @@ block content
               .downvote-button
             .answer-body
               .content= answer.body
-              .answer-user
+              .answer-user Posted by #{answer.User.username}
               div
                 if locals.authenticated && locals.user.id === answer.user_id
                   form(action=`/answers/${answer.id}/delete` method="POST")
