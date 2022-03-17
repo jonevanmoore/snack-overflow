@@ -25,6 +25,8 @@ block content
             if question.image_link1
               img(src=question.image_link1)
           .post-user= question.User.username
+          .post-edit
+            button Edit 
       if question.Answers
         each answer in question.Answers
           div(class=`answer-${answer.id}`)
