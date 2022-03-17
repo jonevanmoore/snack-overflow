@@ -103,4 +103,31 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
+
+
+router.post('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(req.params.id);
+    if (question) {
+        if (req.session.auth && question.user_id === res.locals.user.id) {
+            const { title, body, image_link1, image_link2, image_link3 } = req.body;
+            const updatedQ = Question.build({
+                title,
+                body,
+                image_link1,
+                image_link2,
+                image_link3,
+            })
+            res.render('question-edit', { updatedQ, token: req.csrfToken() })
+        } else {
+            const error = new Error('Not authorized');
+            error.status = 401;
+            next(error);
+        }
+    } else {
+        const error = new Error('Question not found');
+        error.status = 404;
+        next(error);
+    }
+}));
+
 module.exports = router;
