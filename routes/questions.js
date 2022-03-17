@@ -130,6 +130,18 @@ router.post('/:id(\\d+)', csrfProtection, questionValidator, asyncHandler( async
             })
             res.render('question-edit', { updatedQ, token: req.csrfToken() })
         } else {
+            
+        }
+    }
+}));
+
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(req.params.id);
+    if (question) {
+        if (req.session.auth && question.user_id === res.locals.user.id) {
+            await question.destroy();
+            res.redirect('/questions');
+        } else {
             const error = new Error('Not authorized');
             error.status = 401;
             next(error);
