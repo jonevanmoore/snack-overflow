@@ -103,4 +103,20 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
+router.delete('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res) => {
+    const question = await Question.findByPk(req.params.id);
+    if (req.session.auth) {
+        if (question) {
+            await question.destroy();
+            res.redirect('/');
+        } else {
+            const error = new Error('Question not found');
+            error.status = 404;
+            next(error);
+        }
+    } else {
+        res.render('user-login', { title: 'Login to ask a question', token: req.csrfToken() });
+    }
+}));
+
 module.exports = router;
