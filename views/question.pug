@@ -21,7 +21,10 @@ block content
       .post
         .sidebar
         .content
-          .post-body= question.body
+          .post-body
+            - const paragraphs = question.body.split('\n')
+            each paragraph in paragraphs
+              p= paragraph
             if question.image_link1
               img(src=question.image_link1)
           .post-user= question.User.username
@@ -36,9 +39,9 @@ block content
               .content= answer.body
               .answer-user
               div
-              if locals.user.id === answer.user_id
-                form(action=`/answers/${answer.id}/delete` method="POST")
-                  button Delete
+                if locals.authenticated && locals.user.id === answer.user_id
+                  form(action=`/answers/${answer.id}/delete` method="POST")
+                    button Delete
       .new-answer-form
               if locals.authenticated
                 h2 Answer Question
