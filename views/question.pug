@@ -29,6 +29,7 @@ block content
               img(src=question.image_link1)
           .post-user= question.User.username
       if question.Answers
+        - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers
           div(class=`answer-${answer.id}`)
             .sidebar
