@@ -119,8 +119,9 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler( async(req, res, next
 
 router.post('/:id(\\d+)', csrfProtection, questionValidator, asyncHandler( async(req, res, next) => {
     const question = await Question.findByPk(req.params.id);
+    const user = await User.findByPk(question.user_id);
     if (question) {
-        if (req.session.auth && question.user_id === res.locals.user.id) {
+        if (req.session.auth && question.user_id === user) {
             const { title, body, image_link1, image_link2, image_link3 } = req.body;
             const updatedQ = Question.build({
                 title,

@@ -27,4 +27,4 @@ block content
             button(type="submit") Save Changes
 
     form(action=`/questions/${question.id}/delete` method="POST")
-            a(href='/questions') Cancel
+            a(href=`/questions/${question.id}/delete`) Delete
