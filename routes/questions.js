@@ -103,19 +103,21 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
-router.post('/:id(\\d+)', csrfProtection, asyncHandler( async(req, res) => {
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler( async(req, res, next) => {
     const question = await Question.findByPk(req.params.id);
-    if (req.session.auth && question.user_id === res.locals.user.id) {
-        if (question) {
+    if (question) {
+        if (req.session.auth && question.user_id === res.locals.user.id) {
             await question.destroy();
-            res.redirect('/');
+            res.redirect('/questions');
         } else {
-            const error = new Error('Question not found');
-            error.status = 404;
+            const error = new Error('Not authorized');
+            error.status = 401;
             next(error);
         }
     } else {
-        res.render('user-login', { title: 'Login to ask a question', token: req.csrfToken() });
+        const error = new Error('Question not found');
+        error.status = 404;
+        next(error);
     }
 }));
 
