@@ -106,4 +106,22 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(req.params.id);
+    if (question) {
+        if (req.session.auth && question.user_id === res.locals.user.id) {
+            await question.destroy();
+            res.redirect('/questions');
+        } else {
+            const error = new Error('Not authorized');
+            error.status = 401;
+            next(error);
+        }
+    } else {
+        const error = new Error('Question not found');
+        error.status = 404;
+        next(error);
+    }
+}));
+
 module.exports = router;
