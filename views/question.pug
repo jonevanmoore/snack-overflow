@@ -1,44 +1,49 @@
 extends layout
 
 block content
-  .layout
-    .title-bar
-      .title
-        h1= question.title
-      form(action='/questions/new')
-        button.title-ask-question-button(type='submit') Ask a Question
-    .subheading-bar
-      - const options = { month: 'short', day: 'numeric', year: 'numeric'}
-      .ask-time
-        span Asked
-        text= question.createdAt.toLocaleString('en-US', options)
-      .edit-time
-        //- if question.updatedAt - question.createdAt > 0
-        span Updated
-        text= question.updatedAt.toLocaleString('en-US', options)
-      //-.edit-time= question.updatedAt - question.createdAt > 0 ? 'Updated ' + question.updatedAt.toLocaleString('en-US', options) : ''
-    .post
-      .sidebar
-      .content
-        .post-body= question.body
-          if question.image_link1
-            img(src=question.image_link1)
-        .post-user= question.User.username
-    if question.Answers
-      each answer in question.Answers
-        div(class=`answer-${answer.id}`)
-          .sidebar
-            .upvote-button
-            //- .score= answer.votes.reduce( (sum, vote) => {sum + vote.value})
-            .downvote-button
-          .answer-body
-            .content= answer.body
-            .answer-user
-    .new-answer-form
-            if locals.authenticated
-              h2 Answer Question
-              form(action=`/answers` method="POST")
-                  input(type="hidden" name="_csrf" value=token)
-                  input(type="hidden" name="question_id" value=question.id)
-                  textarea(name="body")
-                  button Submit
+  .body-content
+    .layout
+      .title-bar
+        .title
+          h1= question.title
+        form(action='/questions/new')
+          button.title-ask-question-button(type='submit') Ask a Question
+      .subheading-bar
+        - const options = { month: 'short', day: 'numeric', year: 'numeric'}
+        .ask-time
+          span Asked
+          text= question.createdAt.toLocaleString('en-US', options)
+        .edit-time
+          //- if question.updatedAt - question.createdAt > 0
+          span Updated
+          text= question.updatedAt.toLocaleString('en-US', options)
+        //-.edit-time= question.updatedAt - question.createdAt > 0 ? 'Updated ' + question.updatedAt.toLocaleString('en-US', options) : ''
+      .post
+        .sidebar
+        .content
+          .post-body= question.body
+            if question.image_link1
+              img(src=question.image_link1)
+          .post-user= question.User.username
+      if question.Answers
+        each answer in question.Answers
+          div(class=`answer-${answer.id}`)
+            .sidebar
+              .upvote-button
+              //- .score= answer.votes.reduce( (sum, vote) => {sum + vote.value})
+              .downvote-button
+            .answer-body
+              .content= answer.body
+              .answer-user
+              div
+              if locals.user.id === answer.user_id
+                form(action=`/answers/${answer.id}/delete` method="POST")
+                  button Delete
+      .new-answer-form
+              if locals.authenticated
+                h2 Answer Question
+                form(action=`/answers` method="POST")
+                    input(type="hidden" name="_csrf" value=token)
+                    input(type="hidden" name="question_id" value=question.id)
+                    textarea(name="body" required)
+                    button Submit
