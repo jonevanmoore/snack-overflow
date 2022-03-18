@@ -1,0 +1,57 @@
+extends layout
+
+append head
+    link(rel='stylesheet' href='/stylesheets/profile-page.css')
+
+block content
+    .user-info-div
+        .pic-and-name
+
+            if user.image_link == null
+                img.profile-pic(src=pic)
+            else
+                img.profile-pic(src=user.image_link )
+            .name-and-signup
+                h1.username= user.username
+                .member-since-div
+                    .icon-cal
+                        i.fa-solid.fa-calendar-days
+                    text Member since
+                    - const options = { month: 'short', day: 'numeric', year: 'numeric'}
+                    text= user.createdAt.toLocaleString('en-US', options)
+            .stats
+                text Stats
+                .stat-nums
+                    .answers-length
+                        text= answers.length
+                        br
+                        text.t2 answers
+                    .questions-length
+                        text= questions.length
+                        br
+                        text.t2 questions
+
+        .cols
+            if answers.length
+                table.answers-t
+                    tr
+                        th.a Answers for
+                    tr
+                    each answer in answers
+                        each question in questions
+                            if answer.dataValues.question_id === question.dataValues.id
+                                tr
+                                    td.answer-td: a(href=`/questions/${question.dataValues.id}`)= question.dataValues.title
+            else
+                text.no.noA No Answers Yet
+
+            if questions.length
+                table.questions-t
+                    tr
+                        th.q Questions
+                    tr
+                        each question in questions
+                            tr
+                                td.question-td: a(href=`/questions/${question.dataValues.id}`)=  question.dataValues.title
+            else
+                text.no.noQ No Questions Yet

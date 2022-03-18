@@ -1,0 +1,131 @@
+
+.profile-pic {
+     height: 150px;
+     width: 200px;
+     object-fit: fill;
+     border-radius: 100px;
+     box-shadow: 0px 10px 25px rgba(0,0,0,.30);
+}
+
+.user-info-div{
+    text-align: center;
+    position: relative;
+    bottom: 150px;
+}
+
+.pic-and-name {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.name-and-signup {
+    position: relative;
+    top: 40px;
+    left: 20px;
+}
+
+.icon-cal {
+    position: relative;
+    right: 25px;
+    bottom: 2px;
+}
+.member-since-div {
+    display: flex;
+    justify-content: space-evenly;
+    color: #6A737C;
+    font-weight: lighter;
+    font-size: smaller;
+    margin-top: 10px;
+}
+
+.stats-bio-div {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.stats {
+    position: relative;
+    left: 40px;
+    top: 35px;
+}
+.stat-nums {
+    display: flex;
+    border: 1px #c2c2c2 solid;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+}
+
+.t2 {
+    font-size: 12px;
+    color: #6A737C;
+}
+
+.questions-length {
+    position: relative;
+    left: 10px;
+}
+
+li {
+    list-style: none;
+}
+
+.questions-answers-div {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 10px;
+    border: 1px solid #c2c2c2;
+}
+
+.cols{
+    display: flex;
+    position: relative;
+    top: 20px;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: white;
+    border-radius: 5px;
+  }
+
+table {
+    font-family: Helvetica;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+
+a {
+    text-decoration: none;
+}
+
+tr:nth-child(even){background-color: #d4d8ff;}
+
+tr:hover {background-color: #ddd;}
+
+.a,.q {
+    text-align: center;
+    font-weight: lighter;
+}
+.a {
+    background-color: #a5a5a5;
+}
+.q {
+    background-color: #3d71ff;
+}
+
+table {
+    position: relative;
+    margin: 3px;
+}
+
+.no {
+    text-align: center;
+    position: relative;
+    left: 200px;
+    margin: 10px;
+}
