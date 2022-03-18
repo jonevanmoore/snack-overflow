@@ -50,38 +50,41 @@
     margin: 6px 0px;
 }
 
-.edit-buttons > div {
-    display: flex;
-    justify-content: center;
-    
-}
-
 .submit-edit {
+    position: relative;
+    top: 20px;
     border-radius: 4px;
     color: white;
     background-color: rgb(15, 155, 19);
     width: 102px;
     padding: 10px;
     border: none;
-    grid-area: a;
 }
 
 .cancel-edit {
+    position: relative;
+    top: 20px;
     border-radius: 4px;
     color: white;
     background-color: rgb(220, 200, 0);
     width: 102px;
     padding: 10px;
     border: none;
-    grid-area: b;
 }
 
 .delete-edit {
+    position: relative;
+    top: 20px;
     border-radius: 4px;
     color: white;
     background-color: rgb(200, 0, 0);
     width: 102px;
     padding: 10px;
     border: none;
-    grid-area: c;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
