@@ -9,8 +9,8 @@ body {
 }
 
 .edit-body {
-    width: 278px;
-    height: 300px;
+    width: 800px;
+    height: 340px;
     background-color: white;
     border-radius: 7px;
     box-shadow: 0px 10px 25px rgb(0 0 0 / 15%);
@@ -23,7 +23,7 @@ body {
 .edit-buttons {
     display: flex;
     margin: 6px 0px;
-    padding: 6px;
+    padding: 8px;
 }
 
 .submit-edit {
@@ -47,12 +47,19 @@ body {
     margin: 6px 0px;
 }
 
-.title-div {
+.title-div > input{
     margin: 6px 0px;
+    width: 600px;
 }
 
-.body-div {
+.body-div > textarea{
     margin: 6px 0px;
+    width: 600px;
+}
+
+.image-links > div {
+    display: grid;
+    
 }
 
 .image1-div {

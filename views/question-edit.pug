@@ -17,16 +17,17 @@ block content
             div.body-div
                 .body-label Body 
                 textarea(name="body")= question.body 
-            div.image1-div
-                .image-link1-label Image URL
-                input(type="text" name="image_link1" value=question.image_link1)
-            div.image2-div 
-                .image-link2-label Image URL
-                input(type="text" name="image_link2" value=question.image_link2)
-            div.image3-div
-                .image-link3-label Image URL
-                input(type="text" name="image_link3" value=question.image_link3)
-    div.edit-buttons
+            .image-links 
+                div.image1-div
+                    .image-link1-label Image URL
+                    input(type="text" name="image_link1" value=question.image_link1)
+                div.image2-div 
+                    .image-link2-label Image URL
+                    input(type="text" name="image_link2" value=question.image_link2)
+                div.image3-div
+                    .image-link3-label Image URL
+                    input(type="text" name="image_link3" value=question.image_link3)
+        div.edit-buttons
                 form(action=`/questions/${question.id}`)
                     button.cancel-edit Cancel
                     button.submit-edit(type="submit") Save Changes
