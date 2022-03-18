@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             cancelButton.innerText = "Cancel"
             cancelButton.className = 'cancel-button'
 
-            const answerContent = document.querySelector(`.answer-${id} > .answer-body > .content`)
+            const answerContent = document.querySelector(`#answer-${id} > .answer-body > .content`)
 
             const editDiv = document.getElementById(`edit-answer-form-${id}`)
             button.hidden = true
@@ -52,5 +52,29 @@ window.addEventListener("DOMContentLoaded", (event) => {
             })
         })
     })
+
+    // DELETE BUTTONS
+
+    const deleteButtons = document.querySelectorAll('.answer-delete');
+
+    deleteButtons.forEach( button => {
+      // send fetch delete
+        const id = button.id.split('-')[2];
+        button.addEventListener('click', event => {
+            fetch(`/answers/${id}`, {
+              method: 'DELETE',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({})
+            }).then( response => {
+                if( response.status === 200 ){
+                  const answer = document.getElementById(`answer-${id}`);
+                  answer.remove();
+                }
+              })
+              .catch( error => console.log(error));
+        });  
+
+      // on success, delete entire section
+    });
 
 })

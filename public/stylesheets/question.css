@@ -95,6 +95,10 @@
   padding-bottom: 24px;
 }
 
+.number-of-answers {
+  color: rgba(0,0,0,.6);
+}
+
 .post > .content {
   display: flex;
   flex-direction: column;
@@ -175,4 +179,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.post-body {
+  width: 100%;
+}
+
+p {
+  width: 100%;
+}
+
+.your-answer-label {
+  padding: 24px 0px;
+  width: 100%; 
+}
+
+.new-answer-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-submit-button {
+  margin: 24px 0px;
+}
+
+textarea {
+  font-family: helvetica;
 }
