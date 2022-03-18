@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             cancelButton.innerText = "Cancel"
             cancelButton.className = 'cancel-button'
 
-            const answerContent = document.querySelector(`.answer-${id} > .answer-body > .content`)
+            const answerContent = document.querySelector(`#answer-${id} > .answer-body > .content`)
 
             const editDiv = document.getElementById(`edit-answer-form-${id}`)
             button.hidden = true
