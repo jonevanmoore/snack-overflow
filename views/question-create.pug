@@ -5,7 +5,7 @@ block content
         ul.errors
             each error in errors
                 li.error= error
-    div(class="questions-create") 
+    .create-body
         form(action="/questions/new" method="POST")
             input(type="hidden" name="_csrf" value=token)
             div
