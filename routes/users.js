@@ -60,8 +60,19 @@ router.post('/signup', validateUser, csrfProtection, asyncHandler(async (req, re
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashed_password = hashedPassword;
-    await user.save();
-    loginUser(req, res, user, '/');
+    try {
+      await user.save();
+      loginUser(req, res, user, '/');
+    } catch(e) {
+      console.log(e);
+      const errors = e.errors.map( error => error.message );
+      res.render('signup', {
+        title: 'Sign Up',
+        user,
+        errors,
+        token: req.csrfToken(),
+      });    
+    }
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('signup', {
