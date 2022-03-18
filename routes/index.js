@@ -3,7 +3,12 @@ let router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'SnackOverflow' });
+  if( req.session.auth ){
+    res.redirect('/questions');
+  } else {
+    res.redirect('/users/signup');
+  }
+
 });
 
 module.exports = router;
