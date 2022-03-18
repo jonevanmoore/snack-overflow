@@ -84,8 +84,7 @@ router.post('/new', csrfProtection, questionValidator, asyncHandler(async (req, 
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
 
-    const question = await Question.findOne({
-        where: { id: Number(questionId) },
+    const question = await Question.findByPk( Number(questionId),{
         include: [{
             model: User,
             attributes: ['username', 'image_link', 'id']
