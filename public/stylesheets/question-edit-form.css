@@ -1,0 +1,90 @@
+.edit-body {
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 10px 25px rgb(0 0 0 / 15%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.title-label {
+    font-size: 27px;
+}
+
+.title-div > input{
+    margin: 6px 0px;
+    width: 600px;
+}
+
+.body-label {
+    font-size: 27px;
+}
+
+.body-div > textarea{
+    margin: 6px 0px;
+    width: 600px;
+    height: 200px;
+}
+
+.image-links {
+    display: flex;
+}
+
+.image-links > div {
+    padding: 0px 12px;
+    justify-content: space-between;
+}
+
+.image1-div {
+    margin: 6px 0px;
+}
+
+.image2-div {
+    margin: 6px 0px;
+}
+
+.image3-div {
+    margin: 6px 0px;
+}
+
+.submit-edit {
+    position: relative;
+    top: 20px;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(15, 155, 19);
+    width: 102px;
+    padding: 10px;
+    border: none;
+}
+
+.cancel-edit {
+    position: relative;
+    top: 20px;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(220, 200, 0);
+    width: 102px;
+    padding: 10px;
+    border: none;
+}
+
+.delete-edit {
+    position: relative;
+    top: 20px;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(200, 0, 0);
+    width: 102px;
+    padding: 10px;
+    border: none;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}

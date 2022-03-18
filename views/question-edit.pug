@@ -1,29 +1,38 @@
 extends layout 
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/question-edit-form.css')
+
 block content 
     if errors
         ul.errors
             each error in errors
                 li.error= error
-    form(action=`/questions/${question.id}` method='POST')
-        input(type="hidden" name="_csrf" value=token)
-        div
-            label(for="title") Title 
-            input(type="text" name="title" value=question.title)
-        div 
-            label(for="body") Body 
-            textarea(name="body")= question.body 
-        div 
-            label(for="image_link1") Image URL
-            input(type="text" name="image_link1" value=question.image_link1)
-        div 
-            label(for="image_link2") Image URL
-            input(type="text" name="image_link2" value=question.image_link2)
-        div 
-            label(for="image_link3") Image URL
-            input(type="text" name="image_link3" value=question.image_link3)
-        div 
-            button(type="reset") Cancel
-            button(type="submit") Save Changes
-    form(action=`/questions/${question.id}/delete` method="POST")
-            button Delete
+    .edit-body
+        form(action=`/questions/${question.id}` method='POST')
+            input(type="hidden" name="_csrf" value=token)
+            .title-div
+                .title-label Title 
+                input(type="text" name="title" value=question.title)
+            .body-div
+                .body-label Body 
+                textarea(name="body")= question.body 
+            .image-links 
+                .image1-div
+                    .image-link1-label Image URL
+                    input(type="text" name="image_link1" value=question.image_link1)
+                .image2-div 
+                    .image-link2-label Image URL
+                    input(type="text" name="image_link2" value=question.image_link2)
+                .image3-div
+                    .image-link3-label Image URL
+                    input(type="text" name="image_link3" value=question.image_link3)
+            .edit-buttons 
+                .submit-div     
+                    button.submit-edit(type='submit') Save
+                .cancel-div
+                    form(action=`/questions/${question.id}`)
+                        button.cancel-edit Cancel
+                .delete-div
+                    form(action=`/questions/${question.id}/delete` method="POST")
+                        button.delete-edit Delete
