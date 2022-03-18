@@ -19,15 +19,4 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     // MODAL STUFF END
 
-    const usernameInput = document.getElementByClassName('username-input')
-    const signUpBtn = document.getElementByClassName('sign-up-button')
-    usernameInput.style.backgroundColor = 'red'
-
-    usernameInput.addEventListener('input', e => {
-        if (e.target.value === 'jonevanmoore') {
-            signUpBtn.onclick = ev => {
-                ev.preventDefault()
-            }
-        }
-    })
 })
