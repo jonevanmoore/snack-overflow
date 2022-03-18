@@ -8,28 +8,31 @@ block content
         ul.errors
             each error in errors
                 li.error= error
-    div.edit-body
+    .edit-body
         form(action=`/questions/${question.id}` method='POST')
             input(type="hidden" name="_csrf" value=token)
-            div.title-div
+            .title-div
                 .title-label Title 
                 input(type="text" name="title" value=question.title)
-            div.body-div
+            .body-div
                 .body-label Body 
                 textarea(name="body")= question.body 
             .image-links 
-                div.image1-div
+                .image1-div
                     .image-link1-label Image URL
                     input(type="text" name="image_link1" value=question.image_link1)
-                div.image2-div 
+                .image2-div 
                     .image-link2-label Image URL
                     input(type="text" name="image_link2" value=question.image_link2)
-                div.image3-div
+                .image3-div
                     .image-link3-label Image URL
                     input(type="text" name="image_link3" value=question.image_link3)
-        div.edit-buttons
-                form(action=`/questions/${question.id}`)
-                    button.cancel-edit Cancel
-                    button.submit-edit(type="submit") Save Changes
-                form(action=`/questions/${question.id}/delete` method="POST")
-                    button.delete-edit Delete
+            .edit-buttons 
+                .submit-div     
+                    button.submit-edit(type='submit') Save
+                .cancel-div
+                    form(action=`/questions/${question.id}`)
+                        button.cancel-edit Cancel
+                .delete-div
+                    form(action=`/questions/${question.id}/delete` method="POST")
+                        button.delete-edit Delete

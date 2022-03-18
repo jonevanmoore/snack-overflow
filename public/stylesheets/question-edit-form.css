@@ -1,16 +1,6 @@
-body {
-    background-color: whitesmoke;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: helvetica;
-    height: 100%;
-}
-
 .edit-body {
     width: 800px;
-    height: 340px;
+    height: 500px;
     background-color: white;
     border-radius: 7px;
     box-shadow: 0px 10px 25px rgb(0 0 0 / 15%);
@@ -20,31 +10,8 @@ body {
     flex-direction: column
 }
 
-.edit-buttons {
-    display: flex;
-    margin: 6px 0px;
-    padding: 8px;
-}
-
-.submit-edit {
-    background-color: green;
-    text-decoration: none;
-    border: none;
-    margin: 6px 0px;
-}
-
-.cancel-edit {
-    background-color: yellow;
-    text-decoration: none;
-    border: none;
-    margin: 6px 0px;
-}
-
-.delete-edit {
-    background-color: red;
-    text-decoration: none;
-    border: none;
-    margin: 6px 0px;
+.title-label {
+    font-size: 27px;
 }
 
 .title-div > input{
@@ -52,14 +19,23 @@ body {
     width: 600px;
 }
 
+.body-label {
+    font-size: 27px;
+}
+
 .body-div > textarea{
     margin: 6px 0px;
     width: 600px;
+    height: 200px;
+}
+
+.image-links {
+    display: flex;
 }
 
 .image-links > div {
-    display: grid;
-    
+    padding: 0px 12px;
+    justify-content: space-between;
 }
 
 .image1-div {
@@ -72,4 +48,40 @@ body {
 
 .image3-div {
     margin: 6px 0px;
+}
+
+.edit-buttons > div {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.submit-edit {
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(15, 155, 19);
+    width: 102px;
+    padding: 10px;
+    border: none;
+    grid-area: a;
+}
+
+.cancel-edit {
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(220, 200, 0);
+    width: 102px;
+    padding: 10px;
+    border: none;
+    grid-area: b;
+}
+
+.delete-edit {
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(200, 0, 0);
+    width: 102px;
+    padding: 10px;
+    border: none;
+    grid-area: c;
 }
