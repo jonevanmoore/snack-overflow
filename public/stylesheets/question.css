@@ -176,3 +176,11 @@
   flex-direction: column;
   align-items: center;
 }
+
+.post-body {
+  width: 100%;
+}
+
+p {
+  width: 100%;
+}
