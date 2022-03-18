@@ -188,3 +188,21 @@
 p {
   width: 100%;
 }
+
+.your-answer-label {
+  padding: 24px 0px;
+  width: 100%; 
+}
+
+.new-answer-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-submit-button {
+  margin: 24px 0px;
+}
+
+textarea {
+  font-family: helvetica;
+}

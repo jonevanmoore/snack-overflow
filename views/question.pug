@@ -66,11 +66,11 @@ block content
                     div.edit-form(id=`edit-answer-form-${answer.id}`)
                       button.edit-button.answer-edit(id=`edit-answer-${answer.id}`) Edit
       .new-answer-form
-        .sidebar
+        //.sidebar
         if locals.authenticated
-          h2 Answer Question
-            form(action=`/answers` method="POST")
-                input(type="hidden" name="_csrf" value=token)
-                input(type="hidden" name="question_id" value=question.id)
-                textarea(name="body" required)
-                button Submit
+          .your-answer-label Your Answer
+          form.new-answer-form(action=`/answers` method="POST")
+              input(type="hidden" name="_csrf" value=token)
+              input(type="hidden" name="question_id" value=question.id)
+              textarea(name="body" placeholder="" rows="7" required)
+              button.edit-button.answer-submit-button Submit
