@@ -95,6 +95,10 @@
   padding-bottom: 24px;
 }
 
+.number-of-answers {
+  color: rgba(0,0,0,.6);
+}
+
 .post > .content {
   display: flex;
   flex-direction: column;

@@ -34,6 +34,9 @@ block content
             .post-user.user-box
               text.user-label posted by
               text= question.User.username
+  
+            - numAnswers = question.Answers.length
+            .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
             .post-edit  
               if locals.authenticated && locals.user.id === question.user_id
                 form(action=`/questions/${question.id}/edit`)
