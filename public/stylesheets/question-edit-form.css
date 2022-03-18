@@ -1,7 +1,43 @@
+body {
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: helvetica;
+    height: 100%;
+}
+
+.edit-body {
+    width: 278px;
+    height: 238px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 10px 25px rgb(0 0 0 / 15%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.edit-buttons {
+    display: flex;
+}
+
+.submit-edit {
+    background-color: green;
+    text-decoration: none;
+    border: none;
+}
+
 .cancel-edit {
     background-color: yellow;
     text-decoration: none;
     border: none;
-    width: 102px;
-    padding: 10px;
+}
+
+.delete-edit {
+    background-color: red;
+    text-decoration: none;
+    border: none;
 }
