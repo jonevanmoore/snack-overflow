@@ -1,0 +1,267 @@
+.container-all {
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.why-join-div {
+    position: relative;
+    margin-right: 40px;
+    margin-top: 90px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+
+/* UL STYLING */
+ul {
+    list-style: none;
+    margin-top: 25px;
+}
+.first-ul li::before {
+    content: "\3f";
+    font-family: "FontAwesome";
+    padding: 0 10px 0 0;
+    font-size: 32px;
+    color: rgb(10, 149, 255);
+    position: relative;
+    right: 5px;
+}
+.first-li{
+    position: relative;
+    left: 17px;
+}
+
+.second-ul li::before {
+    content: "\f4ad";
+    font-family: "FontAwesome";
+    padding: 0 10px 0 0;
+    font-size: 32px;
+    color: rgb(10, 149, 255);
+}
+.second-li{
+    position: relative;
+    left: 5px;
+}
+
+.third-ul li::before {
+    content: "\e4c6";
+    font-family: "FontAwesome";
+    padding: 0 10px 0 0;
+    font-size: 32px;
+    color: rgb(10, 149, 255);
+}
+
+
+.fourth-ul li::before {
+    content: "\f564";
+    font-family: "FontAwesome";
+    padding: 0 10px 0 0;
+    font-size: 32px;
+    color: rgb(10, 149, 255);
+}
+.fourth-li {
+    position: relative;
+    left: 5px;
+}
+
+.fa-question{
+    color: blue;
+    right: 20px;
+}
+.fa-arrows-up-down {
+    color: blue;
+    right: 20px;
+}
+.fa-user {
+    margin: 0px 4px;
+  }
+
+.demo-login-button {
+    width: 340px;
+    padding: 12px;
+    margin: 20px 0px;
+    border: none;
+    border-radius: 7px;
+    background-color: #385499;
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+.demo-login-button:hover {
+    background-color: #2d437b;
+  }
+
+.user-sign-up-div {
+    width: 340px;
+    height: 340px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,.15);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-label {
+    font-size: 14px;
+    margin: 3px 0px;
+    padding: 0px 2px;
+  }
+
+
+  .sign-up-username-div {
+    margin: 6px 0;
+  }
+
+  .sign-up-email-div {
+    margin: 6px 0;
+  }
+
+  .sign-up-password-div {
+    margin: 6px 0;
+  }
+
+  .sign-up-confirm-pass-div {
+    margin: 6px 0;
+  }
+
+  .sign-up-input {
+    padding: 8px 9px;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 4px;
+  }
+  .sign-up-button {
+    margin: 2px 0px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(10,149,255,.3);
+    background-color: rgb(10, 149, 255);
+    color: white;
+    margin-top: 10px;
+    width: 278px;
+  }
+  .sign-up-button:hover {
+    background-color: rgb(3, 104, 180);
+  }
+
+  .login-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+  }
+  .login-links *{
+    font-size: 13px;
+  }
+  .login-links > div > a {
+    margin: 20px 0px;
+    text-decoration: none;
+    color: #0077CC;
+    padding-left: 4px;
+  }
+  .login-links > div > a:hover {
+    color: #0095ff;
+  }
+
+  .login-links-bottom > a > i {
+    padding-left: 4px;
+  }
+
+  .fa-arrow-up-right-from-square {
+    font-size: 14px;
+    color: #0077CC;
+    position: relative;
+    left: 3px;
+  }
+
+.error-style {
+    position: relative;
+    top: 180px;
+    left: 10px;
+    color: red;
+    font-size: small;
+}
+
+
+
+
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+.below-icons {
+    color: #6A737C;
+    font-size: small;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fa-linkedin {
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+    padding-bottom: 20px;
+    color: #0e76a8;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+
+    background-color: white;
+    opacity: 98%;
+    margin: 0 500px 0 500px;
+    border-radius: 10px;
+    border: 1px solid #333333;
+}
+.modal-link {
+    margin-bottom: 20px;
+}
+.link-hover:hover {
+    color: #0e76a8;
+}
+
+#modalBtn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color:rgb(10, 149, 255);
+    font-size: 12px;
+}
+#modalBtn:hover {
+    color: #0e76a8;
+}
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

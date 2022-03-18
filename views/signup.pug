@@ -1,23 +1,75 @@
 extends layout
+append head
+  link(rel='stylesheet' href='/stylesheets/sign_up.css')
+  script(src="/javascripts/sign-up-modal.js" type="module" defer)
 
 block content
-    if errors
-        each error in errors
-            pre= error
 
-    form(action="/users/signup" method="POST")
-        input(type="hidden" name="_csrf" value=token)
-        div
-            label(for="username") Username
-            input(type="text" name="username")
-        div
-            label(for="email") Email
-            input(type="text" name="email")
-        div
-            label(for="password") Password
-            input(type="password" name="password")
-        div
-            label(for="confirm_password") Confirm Password
-            input(type="password" name="confirm_password")
-        div
-            button Sign Up
+    div(id="myModal" class="modal")
+        div(class="modal-content")
+            ul.modal-ul
+                i.fa-brands.fa-linkedin
+                li.modal-link: a(href='https://github.com/MasonKogami' target='_blank' class="link-hover") Mason Kogami
+                li.modal-link: a(href='https://github.com/Nick-Yawn' target='_blank' class="link-hover") Nick Yawn
+                li.modal-link: a(href='https://github.com/samuelrkramer' target='_blank' class="link-hover") Samuel Kramer
+                li.modal-link: a(href='https://github.com/jonevanmoore' target='_blank' class="link-hover") Jon Moore
+            span(class="close")
+
+    .container-all
+        .why-join-div
+            h1 Join the Snack Overflow Community
+            .join-us
+                ul.first-ul
+                    li.first-li Get unstuck — ask a question
+                ul.second-ul
+                    li.second-li Engage with other foodies by voting and commenting
+                ul.third-ul
+                    li.third-li Share your favorite meals
+                ul.fourth-ul
+                    li.fourth-li Leave with other great recipes
+                br
+                br
+                .future-employees
+                    text.below-icons Want to know your future employees better?
+                    button(id="modalBtn") Click here
+
+        .sign-up-form-container
+            .demo-div
+                form(action='/users/demologin')
+                    button.demo-login-button(type='submit')
+                        i.fas.fa-user
+                        text Log in with Demo User
+            .user-sign-up-div
+                form(action="/users/signup" method="POST")
+                    input(type="hidden" name="_csrf" value=token)
+                    .sign-up-criteria
+                        .sign-up-username-div
+                            .username-div Username
+                            input.sign-up-input(type="text" name="username")
+
+                        .sign-up-email-div
+                            .email-div Email
+                            input.sign-up-input(type="text" name="email")
+
+                        .sign-up-password-div
+                            .password-div Password
+                            input.sign-up-input(type="password" name="password")
+
+                        .sign-up-confirm-pass-div
+                            .confirm-pass-div Confirm Password
+                            input.sign-up-input(type="password" name="confirm_password")
+                    div
+                        button.sign-up-button Sign Up
+            div.login-links
+                div.login-links-top
+                    text Already have an account?
+                    a(href='/users/login') Log in
+                br
+                div.login-links-bottom
+                    text Are you an employer?
+                    a(href='https://github.com/jonevanmoore/snack-overflow-group-project' target='_blank') Check out our GitHub!
+                    i.fas.fa-arrow-up-right-from-square
+        .error-container
+            if errors
+                 each error in errors
+                    pre.error-style= error
