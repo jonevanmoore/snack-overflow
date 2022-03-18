@@ -8,7 +8,10 @@ const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 router.get('/', csrfProtection, async(req, res) => {
-    let questions = await Question.findAll({include: User});
+    let questions = await Question.findAll({
+        include: User,
+        order: [ ['updatedAt', 'DESC'] ],
+    });
     questions = questions.map(el => {
         let preview = el.body.slice(0,141);
         console.log(preview)
