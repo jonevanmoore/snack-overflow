@@ -9,7 +9,6 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 
 router.get('/', csrfProtection, async(req, res) => {
     let questions = await Question.findAll({include: User});
-    console.log(typeof(questions), Array.isArray(questions))
     questions = questions.map(el => {
         let preview = el.body.slice(0,141);
         console.log(preview)
@@ -17,7 +16,7 @@ router.get('/', csrfProtection, async(req, res) => {
         el.preview = preview;
         return el;
     });
-    res.render('question-read', {questions, noun: "Question"});
+    res.render('questions-list', {questions, noun: "Question"});
 });
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {

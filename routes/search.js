@@ -1,5 +1,5 @@
 const express = require('express');
-const { Question, User, Answer } = require('../db/models');
+const { Question, User } = require('../db/models');
 const router = express.Router();
 const { Op } = require('sequelize');
 
@@ -18,13 +18,9 @@ router.get('/', asyncHandler( async(req, res, next) => {
                     [Op.iLike]: `%${q}%`
                 }},
             ]
-            // body: {
-            //     [Op.iLike]: `%${q}%`
-            // }
         },
         order: [ ['updatedAt', 'DESC'] ],
     });
-    // console.log(typeof(questions), Array.isArray(questions))
     questions = questions.map(el => {
         let preview = el.body.slice(0,141);
         console.log(preview)
@@ -32,7 +28,7 @@ router.get('/', asyncHandler( async(req, res, next) => {
         el.preview = preview;
         return el;
     });
-    res.render('question-read', {questions, noun: "Result"});
+    res.render('questions-list', {questions, noun: "Result"});
 }));
 
 
