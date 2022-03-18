@@ -33,14 +33,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     body: JSON.stringify({
                         'content': textarea.value
                     }),
-                    credentials: 'include'
+                    credentials: 'same-origin' //this is default behavior, not required
                 }).then(response => response.json())
                     .then(data => {
-                        answerContent.innerText = data.answer.body
-                        button.hidden = false
-                        updateButton.remove()
-                        cancelButton.remove()
-                        textarea.remove()
+                        if( data.answer ){
+                          answerContent.innerText = data.answer.body
+                          button.hidden = false
+                          updateButton.remove()
+                          cancelButton.remove()
+                          textarea.remove()
+                        }
                     })
                     .catch(error => console.log(error))
 

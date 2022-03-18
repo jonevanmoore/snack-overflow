@@ -64,7 +64,7 @@ router.post(`/:id(\\d+)/delete`, async (req, res, next) => {
 router.put('/:id(\\d+)', async (req, res, next) => {
     const answer = await Answer.findByPk(Number(req.params.id))
 
-    if (answer) {
+    if (answer && req.session.auth && req.session.auth.userId === answer.user_id) {
         answer.body = req.body.content
         console.log(req.body)
         await answer.save()
