@@ -28,7 +28,7 @@ html
           div(class="search_div")
             form(class="search_form" action="/search")
               span.fa-solid.fa-magnifying-glass
-              input(id="search-bar" placeholder="Search Questions")
+              input(id="search-bar" name="q" placeholder="Search Questions")
           div(class="login-logout")
             if locals.authenticated
               li: a(href=`/users/${locals.user.id}`) Profile

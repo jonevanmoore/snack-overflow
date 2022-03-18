@@ -46,10 +46,11 @@ router.post('/', csrfProtection, answerValidator, asyncHandler(async (req, res, 
 
 }))
 
+/* Old Delete Route
 router.post(`/:id(\\d+)/delete`, async (req, res, next) => {
-    const answer = await Answer.findByPk(req.params.id)
+    const answer = await Answer.findByPk(Number(req.params.id))
 
-    if (answer && answer.user_id === req.session.auth.userId) {
+    if (answer && req.session.auth && answer.user_id === req.session.auth.userId) {
         const questionId = answer.question_id
         await answer.destroy()
         res.redirect(`/questions/${questionId}`)
@@ -59,6 +60,32 @@ router.post(`/:id(\\d+)/delete`, async (req, res, next) => {
         next(error)
     }
 
+})
+*/
+
+// New DOM delete route
+router.delete('/:id(\\d+)', async (req, res, next) => {
+    const answer = await Answer.findByPk(Number(req.params.id))
+    if( answer ){
+      if (req.session.auth && answer.user_id === req.session.auth.userId) {
+          const questionId = answer.question_id
+          try {
+            await answer.destroy()
+            res.status(200);
+            res.json();
+          } catch(e) {
+            res.status(500);
+            res.json();
+          }
+      } else {
+          res.status(403);
+          res.json();
+      }
+    } else {
+      res.status(404);
+      res.json();
+    }
+     
 })
 
 router.put('/:id(\\d+)', async (req, res, next) => {

@@ -65,7 +65,9 @@ router.post('/signup', validateUser, csrfProtection, asyncHandler(async (req, re
       loginUser(req, res, user, '/');
     } catch (e) {
       console.log(e);
-      const errors = e.errors.map(error => error.message);
+      const errors = [];
+      if (e.errors) errors.push(...e.errors.map(error => error.message));
+      else errors.push(e.message);
       res.render('signup', {
         title: 'Sign Up',
         user,
