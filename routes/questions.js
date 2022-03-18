@@ -8,8 +8,10 @@ const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 router.get('/', csrfProtection, async(req, res) => {
-    let questions = await Question.findAll({include: User});
-    console.log(typeof(questions), Array.isArray(questions))
+    let questions = await Question.findAll({
+        include: User,
+        order: [ ['updatedAt', 'DESC'] ],
+    });
     questions = questions.map(el => {
         let preview = el.body.slice(0,141);
         console.log(preview)
@@ -17,7 +19,7 @@ router.get('/', csrfProtection, async(req, res) => {
         el.preview = preview;
         return el;
     });
-    res.render('question-read', {questions});
+    res.render('questions-list', {questions, noun: "Question"});
 });
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {
