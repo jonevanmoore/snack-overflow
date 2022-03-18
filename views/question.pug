@@ -44,7 +44,7 @@ block content
       if question.Answers
         - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers
-          div.answer(class=`answer-${answer.id}`)
+          div.answer(id=`answer-${answer.id}`)
             .sidebar
               .upvote-button.vote-button
               - const score = answer.Votes.reduce( (sum, vote) => {sum + vote.value}, 0)
@@ -61,8 +61,7 @@ block content
                   text= answer.User.username
                 .answer-buttons
                   if locals.authenticated && locals.user.id === answer.user_id
-                    form(action=`/answers/${answer.id}/delete` method="POST")
-                      button.delete-button Delete
+                    button.delete-button.answer-delete(id=`delete-answer-${answer.id}`) Delete
                     div.edit-form(id=`edit-answer-form-${answer.id}`)
                       button.edit-button.answer-edit(id=`edit-answer-${answer.id}`) Edit
       .new-answer-form
