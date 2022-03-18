@@ -17,7 +17,7 @@ router.get('/', csrfProtection, async(req, res) => {
         el.preview = preview;
         return el;
     });
-    res.render('question-read', {questions});
+    res.render('question-read', {questions, noun: "Question"});
 });
 
 router.get('/new', csrfProtection, asyncHandler( async(req, res) => {

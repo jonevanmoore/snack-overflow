@@ -32,7 +32,7 @@ router.get('/', asyncHandler( async(req, res, next) => {
         el.preview = preview;
         return el;
     });
-    res.render('question-read', {questions});
+    res.render('question-read', {questions, noun: "Result"});
 }));
 
 
