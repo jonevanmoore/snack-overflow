@@ -106,8 +106,47 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 }));
 
-router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler( async(req, res, next) => {
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler( async(req, res, next) => {
     const question = await Question.findByPk(req.params.id);
+    if (req.session.auth && question.user_id === res.locals.user.id) {
+        res.render('question-edit', { question, token: req.csrfToken() })
+    } else {
+        const error = new Error('Not authorized');
+        error.status = 401;
+        next(error);
+    }
+}));
+
+router.post('/:id(\\d+)', csrfProtection, questionValidator, asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(Number(req.params.id));
+    if (question) {
+        if (req.session.auth && question.user_id === res.locals.user.id) {
+            const { title, body, image_link1, image_link2, image_link3 } = req.body;
+            
+            question.title = title;
+            question.body = body;
+            question.image_link1 = image_link1;
+            question.image_link2 = image_link2;
+            question.image_link3 = image_link3;
+
+            const validateErrors = validationResult(req);
+            if (validateErrors.isEmpty()) {
+                await question.save();
+                res.redirect(`/questions/${question.id}`)
+            } else {
+                const errors = validateErrors.array().map(error => error.msg);
+                res.render('question-edit', { errors, question, token: req.csrfToken() })
+            }
+        } else {
+            const error = new Error('Not authorized');
+            error.status = 401;
+            next(error);
+        }
+    }
+}));
+
+router.post('/:id(\\d+)/delete', asyncHandler( async(req, res, next) => {
+    const question = await Question.findByPk(Number(req.params.id));
     if (question) {
         if (req.session.auth && question.user_id === res.locals.user.id) {
             await question.destroy();
