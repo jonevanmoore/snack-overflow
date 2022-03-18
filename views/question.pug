@@ -32,6 +32,7 @@ block content
             if question.image_link1
               img(src=question.image_link1)
           .post-user= question.User.username
+          if locals.authenticated && locals.user.id === answer.user_id
           .post-edit
             a(href=`/questions/${question.id}/edit`) Edit 
       if question.Answers

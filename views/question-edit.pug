@@ -23,7 +23,7 @@ block content
             label(for="image_link3") Image URL
             input(type="text" name="image_link3" value=question.image_link3)
         div 
-            button(type="reset") Cancel
+            a(href=`/questions/${question.id}`) Cancel
             button(type="submit") Save Changes
     form(action=`/questions/${question.id}/delete` method="POST")
             button Delete
