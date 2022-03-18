@@ -27,7 +27,6 @@ module.exports = {
     */
       return queryInterface.changeColumn('Users','username', { 
         type: Sequelize.DataTypes.STRING(20), 
-        unique: false,
         allowNull: false 
       });
 
