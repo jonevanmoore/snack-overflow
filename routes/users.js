@@ -175,6 +175,14 @@ router.get('/:id(\\d+)', async (req, res) => {
     where: { user_id }
   })
 
-  res.render("profile-page", { user, answers, questions })
+  const randomPics = [
+    "https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg",
+    "https://www.denverpost.com/wp-content/uploads/2016/05/20110819__20110820_B06_BZ20KINGSHELFp1.jpg",
+    "https://img.buzzfeed.com/buzzfeed-static/static/2015-07/16/11/campaign_images/webdr01/the-truth-behind-your-favorite-food-mascots-2-2677-1437059125-6_dblbig.jpg",
+    "https://loonietimes.com/wp-content/uploads/2019/07/Maple-leaf-Food.jpg"
+  ]
+  const pic = randomPics[Math.floor(Math.random() * randomPics.length)]
+
+  res.render("profile-page", { user, answers, questions, pic })
 })
 module.exports = router;

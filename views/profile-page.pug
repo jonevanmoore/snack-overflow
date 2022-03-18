@@ -6,8 +6,9 @@ append head
 block content
     .user-info-div
         .pic-and-name
+
             if user.image_link == null
-                img.profile-pic(src="https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg")
+                img.profile-pic(src=pic)
             else
                 img.profile-pic(src=user.image_link )
             .name-and-signup
@@ -29,17 +30,7 @@ block content
                         text= questions.length
                         br
                         text.t2 questions
-        //- .questions-answers-div
-        //-     .answers
-        //-         h2.a-title.title Answers for
-        //-             each answer in answers
-        //-                 each question in questions
-        //-                     if answer.dataValues.question_id === question.dataValues.id
-        //-                         li.answer-li: a(href=`/questions/${question.dataValues.id}`)= question.dataValues.title
-        //-     .questions
-        //-         h2.q-title.title Questions
-        //-             each question in questions
-        //-                 li.question-li: a(href=`/questions/${question.dataValues.id}`)=  question.dataValues.title
+
         .cols
             if answers.length
                 table.answers-t
