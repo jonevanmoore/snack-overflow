@@ -35,6 +35,7 @@ block content
               text.user-label posted by
               text= question.User.username
             .post-edit
+              if locals.authenticated && locals.user.id === question.user_id
               form(action=`/questions/${question.id}/edit`)
                 button.edit-button.question-button Edit
       if question.Answers

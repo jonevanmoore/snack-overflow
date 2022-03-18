@@ -1,5 +1,8 @@
 extends layout 
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/question-edit-form.css')
+
 block content 
     if errors
         ul.errors
@@ -23,7 +26,8 @@ block content
             label(for="image_link3") Image URL
             input(type="text" name="image_link3" value=question.image_link3)
         div 
-            a(href=`/questions/${question.id}`) Cancel
+            form(action=`/questions/${question.id}`)
+            button.cancel-edit Cancel
             button(type="submit") Save Changes
     form(action=`/questions/${question.id}/delete` method="POST")
             button Delete
