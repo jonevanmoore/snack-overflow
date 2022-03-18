@@ -7,23 +7,26 @@ window.addEventListener("DOMContentLoaded", (event) => {
         button.addEventListener('click', e => {
             const updateButton = document.createElement('button')
             updateButton.innerText = "Update"
+            updateButton.className = 'edit-button'
 
             const cancelButton = document.createElement('button')
             cancelButton.innerText = "Cancel"
+            cancelButton.className = 'cancel-button'
 
-            const textarea = document.createElement('textarea')
             const answerContent = document.querySelector(`.answer-${id} > .answer-body > .content`)
-            textarea.innerText = answerContent.innerText
 
             const editDiv = document.getElementById(`edit-answer-form-${id}`)
             button.hidden = true
-            editDiv.append(textarea, updateButton, cancelButton)
+            editDiv.append( updateButton, cancelButton)
+
+            answerContent.setAttribute('contenteditable', true); 
+            answerContent.classList.add('editing');            
 
             cancelButton.addEventListener('click', ev => {
                 button.hidden = false
                 updateButton.remove()
                 cancelButton.remove()
-                textarea.remove()
+                answerContent.classList.remove('editing');
             })
 
             updateButton.addEventListener('click', ev => {
@@ -31,7 +34,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        'content': textarea.value
+                        'content': answerContent.innerText
                     }),
                     credentials: 'same-origin' //this is default behavior, not required
                 }).then(response => response.json())
@@ -41,7 +44,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                           button.hidden = false
                           updateButton.remove()
                           cancelButton.remove()
-                          textarea.remove()
+                          answerContent.classList.remove('editing');
                         }
                     })
                     .catch(error => console.log(error))

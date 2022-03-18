@@ -18,10 +18,9 @@ block content
           span Asked
           text= question.createdAt.toLocaleString('en-US', options)
         .edit-time
-          //- if question.updatedAt - question.createdAt > 0
-          span Updated
-          text= question.updatedAt.toLocaleString('en-US', options)
-        //-.edit-time= question.updatedAt - question.createdAt > 0 ? 'Updated ' + question.updatedAt.toLocaleString('en-US', options) : ''
+          if question.updatedAt - question.createdAt > 0
+            span Updated
+            text= question.updatedAt.toLocaleString('en-US', options)
       .post
         .sidebar
         .content
@@ -31,31 +30,43 @@ block content
               p= paragraph
             if question.image_link1
               img(src=question.image_link1)
-          .post-user= question.User.username
-          .post-edit
-            a(href=`/questions/${question.id}/edit`) Edit 
+          .post-controls.controls
+            .post-user.user-box
+              text.user-label posted by
+              text= question.User.username
+            .post-edit
+              form(action=`/questions/${question.id}/edit`)
+                button.edit-button.question-button Edit
       if question.Answers
         - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers
-          div(class=`answer-${answer.id}`)
+          div.answer(class=`answer-${answer.id}`)
             .sidebar
-              .upvote-button
-              //- .score= answer.votes.reduce( (sum, vote) => {sum + vote.value})
-              .downvote-button
+              .upvote-button.vote-button
+              - const score = answer.Votes.reduce( (sum, vote) => {sum + vote.value}, 0)
+              .score= score === 0 ? '' : score
+              .downvote-button.vote-button 
             .answer-body
-              .content= answer.body
-              .answer-user Posted by #{answer.User.username}
-              div
-                if locals.authenticated && locals.user.id === answer.user_id
-                  form(action=`/answers/${answer.id}/delete` method="POST")
-                    button Delete
-                  div(id=`edit-answer-form-${answer.id}`)
-                    button.answer-edit(id=`edit-answer-${answer.id}`) Edit
+              - const answerDivs = answer.body.split('\n')
+              .content
+                each answerDiv in answerDivs
+                  p= answerDiv
+              .answer-controls.controls
+                .answer-user.user-box 
+                  text.user-label posted by
+                  text= answer.User.username
+                .answer-buttons
+                  if locals.authenticated && locals.user.id === answer.user_id
+                    form(action=`/answers/${answer.id}/delete` method="POST")
+                      button.delete-button Delete
+                    div.edit-form(id=`edit-answer-form-${answer.id}`)
+                      button.edit-button.answer-edit(id=`edit-answer-${answer.id}`) Edit
       .new-answer-form
-              if locals.authenticated
-                h2 Answer Question
-                form(action=`/answers` method="POST")
-                    input(type="hidden" name="_csrf" value=token)
-                    input(type="hidden" name="question_id" value=question.id)
-                    textarea(name="body" required)
-                    button Submit
+        .sidebar
+        if locals.authenticated
+          h2 Answer Question
+            form(action=`/answers` method="POST")
+                input(type="hidden" name="_csrf" value=token)
+                input(type="hidden" name="question_id" value=question.id)
+                textarea(name="body" required)
+                button Submit
