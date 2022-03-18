@@ -47,7 +47,10 @@ block content
               .score= score === 0 ? '' : score
               .downvote-button.vote-button 
             .answer-body
-              .content !{`<p>${answer.body.replace(/\n/g,'</p><p>')}</p>`}
+              - const answerDivs = answer.body.split('\n')
+              .content
+                each answerDiv in answerDivs
+                  p= answerDiv
               .answer-controls.controls
                 .answer-user.user-box 
                   text.user-label posted by
