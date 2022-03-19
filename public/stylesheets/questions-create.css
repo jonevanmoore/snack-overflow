@@ -1,4 +1,79 @@
-.body-create {
+.create-body {
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 10px 25px rgb(0 0 0 / 15%);
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.title-label {
+    font-size: 27px;
+}
+
+.title-con > input {
+    margin: 6px 0px;
+    width: 600px;
+}
+
+.body-label {
+    font-size: 27px;
+}
+
+.body-con > textarea{
+    margin: 6px 0px;
+    width: 600px;
+    height: 200px;
+}
+
+.images-con {
+    display: flex;
+}
+
+.images-con > div {
+    padding: 0px 12px;
+    justify-content: space-between;
+}
+
+.image1-con {
+    margin: 6px 0px;
+}
+
+.image2-con {
+    margin: 6px 0px;
+}
+
+.image3-con {
+    margin: 6px 0px;
+}
+
+.submit-btn {
+    position: relative;
+    top: 20px;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(15, 155, 19);
+    width: 102px;
+    padding: 10px;
+    border: none;
+}
+
+.cancel-btn {
+    position: relative;
+    top: 20px;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(220, 200, 0);
+    width: 102px;
+    padding: 10px;
+    border: none;
+}
+
+.edit-btns-con {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
 }

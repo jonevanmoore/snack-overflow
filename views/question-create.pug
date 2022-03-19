@@ -1,5 +1,8 @@
 extends layout
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/questions-create.css')
+
 block content
     if errors
         ul.errors
@@ -9,24 +12,24 @@ block content
         form(action="/questions/new" method="POST")
             input(type="hidden" name="_csrf" value=token)
             .title-con
-                label(for="title") Title 
+                .title-label Title 
                 input(type="text" name="title" value=question.title)
             .body-con 
-                label(for="body") Body 
+                .body-label Body 
                 textarea(name="body")= question.body 
             .images-con
                 .image1-con 
-                    label(for="image_link1") Image URL
+                    .image-link1-label Image URL
                     input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
                 .image2-con 
-                    label(for="image_link2") Image URL
+                    .image-link2-label Image URL
                     input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
                 .image3-con 
-                    label(for="image_link3") Image URL
+                    .image-link3-label Image URL
                     input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
             .edit-btns-con 
                 .submit-con
-                    button.submit-btn(type="submit") Submit Question 
+                    button.submit-btn(type="submit") Submit 
                 .cancel-con
-                    form(action='/questions')
+                    form(action="/questions")
                         button.cancel-btn Cancel
