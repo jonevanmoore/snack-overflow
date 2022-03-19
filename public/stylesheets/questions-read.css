@@ -10,7 +10,7 @@
 
 .question-title {
   text-decoration: none;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: rgb(10, 149, 255);
 }
@@ -19,7 +19,31 @@
   color: blue;
 }
 
+.Qpreview {
+  font-size: 15px;
+}
+
+.Qbox {
+  padding: 16px;
+  background-color: #e1ecf4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  order: 2;
+}
+
+.Qbox > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2px;
+  background-color: #e1ecf4;
+  border-radius: 8px;
+  align-items: center;
+}
+
 .Qusername {
-  position: relative;
-  left: 500px;
+  color: rgba(0,0,0,.5);
+  padding-right: 6px;
+  font-size: 14px;
 }
