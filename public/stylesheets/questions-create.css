@@ -63,6 +63,9 @@
 }
 
 .cancel-btn {
+    font-size: 13.33px;
+    display: block;
+    text-decoration: none;
     position: relative;
     top: 20px;
     border-radius: 4px;
@@ -70,7 +73,7 @@
     background-color: rgb(220, 200, 0);
     width: 102px;
     padding: 10px;
-    border: none;
+    text-align: center;
 }
 
 .edit-btns-con {
