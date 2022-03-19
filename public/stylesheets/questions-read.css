@@ -1,9 +1,25 @@
 .questionBox {
     /* background-color: orange; */
-    width: 60%;
+    width: 100%;
 }
 
 .body-content {
   height: 100%;
   width: 60%;
+}
+
+.question-title {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(10, 149, 255);
+}
+
+.question-title:hover{
+  color: blue;
+}
+
+.Qusername {
+  position: relative;
+  left: 500px;
 }
