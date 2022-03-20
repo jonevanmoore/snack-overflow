@@ -24,22 +24,19 @@
 }
 
 .Qbox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.Qusername {
   padding: 16px;
   background-color: #e1ecf4;
   border-radius: 8px;
   display: flex;
   align-items: center;
   order: 2;
-}
-
-.Qbox > div {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 2px;
-  background-color: #e1ecf4;
-  border-radius: 8px;
-  align-items: center;
 }
 
 .Qusername {
