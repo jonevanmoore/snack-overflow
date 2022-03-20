@@ -96,33 +96,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
       
       if( button.classList.contains('active') ){
-
-        // these two functions must be named so they can be removed
-        const disengageVote = event => {
+        const toggleVote = event => {
           let value = getValue(event);
-          const thisButton = event.target; // missing this line gave me the WORST bug
-          const body = { answer_id, question_id, value }; // this lets us reuse the route
-          fetch('/votes', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(body) 
-          }).then( response => {
-            if ( response.status === 200 ){
-              return response.json();
-            }
-          }).then( data => {
-            if( data ){
-              thisButton.classList.remove('engaged');
-              thisButton.removeEventListener('click', disengageVote);
-              thisButton.addEventListener('click', engageVote);
-              score.innerText = data.score
-            } 
-          } ).catch( error => console.log(error) ); 
-        };
-
-        const engageVote = event => {
-          let value = getValue(event);
-          const thisButton = event.target; // ditto above. scoping nightmare.
+          const thisButton = event.target;
           const body = { answer_id, question_id, value }
           fetch('/votes', {
             method: 'POST',
@@ -134,17 +110,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
           }).then( data => {
             if( data ){
-              thisButton.removeEventListener('click', engageVote); 
-              thisButton.addEventListener('click', disengageVote);     
               score.innerText = data.score;
-              disengageOtherButton(thisButton, answer_id);
-              thisButton.classList.add('engaged'); 
+              if( value === 0 ){
+                thisButton.classList.remove('engaged');     
+              } else {
+                thisButton.classList.add('engaged');   
+                disengageOtherButton(thisButton, answer_id);
+              }
+              
             }
           }).catch( error => console.log(error));
         };
 
-        // this works every time.
-        function disengageOtherButton (aButton, answer_id) {
+        const disengageOtherButton = (aButton, answer_id) => {
           let otherButton;
           if( aButton.className.includes('upvote') ){
             otherButton = document.getElementById(`downvote-${answer_id}`);
@@ -154,18 +132,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
           if( otherButton.className.includes('engaged') ){
             otherButton.classList.remove('engaged');
-            otherButton.removeEventListener('click', disengageVote);
-            otherButton.addEventListener('click', engageVote);
           }
         }
 
-
-        // the engaged class is applied on initial page load, if applicable
-        if( button.className.includes('engaged') ){
-          button.addEventListener('click', disengageVote);
-        } else {
-          button.addEventListener('click', engageVote);
-        }
+        button.addEventListener('click', toggleVote);
       }  
     });
 
