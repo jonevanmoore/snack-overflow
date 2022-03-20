@@ -21,6 +21,17 @@
   max-width: 900px;
 }
 
+.image_div {
+  display: flex;
+}
+.img_link {
+  width: 200px;
+  height: 200px;
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 20px;
+}
+
 .title-ask-question-button {
   border-radius: 4px;
   color: white;
@@ -40,7 +51,7 @@
   background-color: rgb(10, 149, 255);
   width: 102px;
   padding: 10px;
-  border: none; 
+  border: none;
 }
 
 .edit-form {
@@ -53,7 +64,7 @@
   background-color: #FF2924;
   width: 102px;
   padding: 10px;
-  border: none; 
+  border: none;
   order: 2;
 }
 
@@ -65,7 +76,7 @@
 
   width: 102px;
   padding: 10px;
-  border: none; 
+  border: none;
 }
 
 .subheading-bar {
@@ -131,7 +142,7 @@
 
 .answer {
   border-bottom: 1px solid rgba(0,0,0,.1);
-  padding: 24px 0px;  
+  padding: 24px 0px;
 }
 
 .new-answer-form {
@@ -162,11 +173,11 @@
   height: 70%;
   background-color: rgba(0,0,0,.3);
 }
- 
+
 .engaged {
   background-color: rgba(0,0,0,.7);
 }
- 
+
 .editing {
   border: 1px solid rgba(0,0,0,.2);
   background-color: white;
@@ -195,7 +206,7 @@ p {
 
 .your-answer-label {
   padding: 24px 0px;
-  width: 100%; 
+  width: 100%;
 }
 
 .new-answer-form {
