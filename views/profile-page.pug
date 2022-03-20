@@ -16,33 +16,22 @@ block content
                 .member-since-div
                     .icon-cal
                         i.fa-solid.fa-calendar-days
-                    text Member since
+                    text Member since 
                     - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                     text= user.createdAt.toLocaleString('en-US', options)
             .stats
                 text Stats
                 .stat-nums
-                    .answers-length
-                        text= answers.length
-                        br
-                        text.t2 answers
                     .questions-length
                         text= questions.length
                         br
                         text.t2 questions
+                    .answers-length
+                        text= answers.length
+                        br
+                        text.t2 answers
 
         .cols
-            if answers.length
-                table.answers-t
-                    tr
-                        th.a Answers for
-                    tr
-                    each answer in answers
-                        tr
-                            td.answer-td: a(href=`/questions/${answer.question_id}`)= answer.body
-            else
-                text.no.noA No Answers Yet
-
             if questions.length
                 table.questions-t
                     tr
@@ -53,3 +42,14 @@ block content
                                 td.question-td: a(href=`/questions/${question.dataValues.id}`)=  question.dataValues.title
             else
                 text.no.noQ No Questions Yet
+
+            if answers.length
+                table.answers-t
+                    tr
+                        th.a Answers
+                    tr
+                    each answer in answers
+                        tr
+                            td.answer-td: a(href=`/questions/${answer.question_id}`)= answer.body
+            else
+                text.no.noA No Answers Yet
