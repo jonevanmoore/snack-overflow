@@ -62,6 +62,10 @@
 }
 
 .cancel-edit {
+    font-size: 13.33px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
     position: relative;
     top: 20px;
     border-radius: 4px;

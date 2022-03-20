@@ -1,5 +1,8 @@
 extends layout 
 
+append head 
+    link(rel="stylesheet" href="/stylesheets/questions-read.css")
+
 block content 
     .body-content
         - noun = (questions.length === 1) ? noun : noun + 's'
@@ -7,12 +10,12 @@ block content
         each question in questions 
             hr 
             .questionBox 
-                a(href=`/questions/${question.id}`)= question.title 
-                .Qpreview= question.preview 
-                .Qusername Posted by 
-                    a(href=`/users/${question.User.id}`): b #{question.User.username}
-                    if question.Answers.length > 0
-                        | &nbsp; | 
-                        |#{question.Answers.length} answers
-                - const options = { month: 'short', day: 'numeric', year: 'numeric'}
-                .Qoptions= question.createdAt.toLocaleString('en-US', options)
+                a(href=`/questions/${question.id}` class="question-title")= question.title 
+                .Qpreview= question.preview
+                .Qbox 
+                    - numAnswers = question.Answers.length
+                    .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
+                    .Qusername Posted by 
+                        a(href=`/users/${question.User.id}`): b #{question.User.username}
+                        - const options = { month: 'short', day: 'numeric', year: 'numeric'}
+                        .Qoptions= question.createdAt.toLocaleString('en-US', options)
