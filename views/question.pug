@@ -38,7 +38,7 @@ block content
           .post-controls.controls
             .post-user.user-box
               text.user-label posted by
-              text= question.User.username
+              a(href=`/users/${question.User.id}`)= question.User.username
 
             - numAnswers = question.Answers.length
             .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
@@ -72,7 +72,7 @@ block content
               .answer-controls.controls
                 .answer-user.user-box
                   text.user-label posted by
-                  text= answer.User.username
+                  a(href=`/users/${answer.User.id}`)= answer.User.username
                 .answer-buttons
                   if locals.authenticated && locals.user.id === answer.user_id
                     button.delete-button.answer-delete(id=`delete-answer-${answer.id}`) Delete
