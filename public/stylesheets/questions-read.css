@@ -33,11 +33,11 @@ hr {
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin-top: 16px;
 }
 
 .number-of-answers {
   color: rgba(0,0,0,.5);
-  padding: 12px 0px 0px 0px;
 }
 
 .Qusername {
