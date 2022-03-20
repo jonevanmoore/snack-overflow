@@ -5,13 +5,7 @@ block content
         - noun = (questions.length === 1) ? noun : noun + 's'
         h1.totalQs #{questions.length} #{noun}
         each question in questions 
-            //- - const ansLength = (question.Answers.length) ? question.Answers.length : 0
             hr 
-            //- div.qStats 
-            //-     div.votes 
-            //-         p #{questions.Vote.voteTotal} votes
-            //-     div.answers 
-            //-         p #{questions.Answer.length} answers
             .questionBox 
                 a(href=`/questions/${question.id}`)= question.title 
                 .Qpreview= question.preview 
