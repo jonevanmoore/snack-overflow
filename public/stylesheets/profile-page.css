@@ -30,6 +30,9 @@
     right: 25px;
     bottom: 2px;
 }
+.mem {
+    padding-left: 3px;
+}
 .member-since-div {
     display: flex;
     justify-content: space-evenly;

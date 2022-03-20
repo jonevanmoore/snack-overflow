@@ -16,7 +16,7 @@ block content
                 .member-since-div
                     .icon-cal
                         i.fa-solid.fa-calendar-days
-                    text Member since
+                    text.mem Member since
                     - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                     text= user.createdAt.toLocaleString('en-US', options)
             .stats
