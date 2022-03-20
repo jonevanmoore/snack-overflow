@@ -13,6 +13,7 @@
   font-size: 22px;
   font-weight: bold;
   color: rgb(10, 149, 255);
+  /* padding: 10px 0px; */
 }
 
 .question-title:hover{
@@ -21,6 +22,7 @@
 
 .Qpreview {
   font-size: 15px;
+  padding: 10px 0px;
 }
 
 .Qbox {
@@ -37,9 +39,15 @@
   display: flex;
   align-items: center;
   order: 1;
+  color: rgba(0,0,0,.5)
 }
 
 .Qusername > a {
   padding: 5px;
   text-decoration: none;
+  color: black;
+}
+
+b {
+  font-weight: normal;
 }
