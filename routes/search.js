@@ -1,5 +1,5 @@
 const express = require('express');
-const { Question, User } = require('../db/models');
+const { Question, User, Answer } = require('../db/models');
 const router = express.Router();
 const { Op } = require('sequelize');
 
@@ -8,7 +8,7 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 router.get('/', asyncHandler( async(req, res, next) => {
     const q = req.query.q;
     let questions = await Question.findAll({
-        include: User,
+        include: [User, Answer],
         where: {
             [Op.or]: [
                 { title: {
