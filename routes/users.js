@@ -43,8 +43,9 @@ const validateUser = [
     .withMessage("Please use the same password."),
 ];
 /*GET /signup form */
-router.get('/signup', csrfProtection, (req, res) => {
-  res.render('signup', { token: req.csrfToken() })
+router.get('/signup', csrfProtection, async (req, res) => {
+  const userList = await User.findAll()
+  res.render('signup', { token: req.csrfToken(), userList })
 });
 /*POST /signup */
 router.post('/signup', validateUser, csrfProtection, asyncHandler(async (req, res) => {

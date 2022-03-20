@@ -45,21 +45,31 @@ block content
                     .sign-up-criteria
                         .sign-up-username-div
                             .username-div Username
-                            input.sign-up-input(type="text" name="username")
+                            input.sign-up-input.username-input(type="text" name="username")
+                            .username-error-div
+                            .username-valid-div
 
                         .sign-up-email-div
                             .email-div Email
-                            input.sign-up-input(type="text" name="email")
+                            input.sign-up-input.email-input(type="text" name="email")
+                            .email-error-div
+                            .email-valid-div
 
                         .sign-up-password-div
                             .password-div Password
-                            input.sign-up-input(type="password" name="password")
+                            input.sign-up-input.password-input(type="password" name="password")
+                            .password-error-div
+                            .password-valid-div
 
                         .sign-up-confirm-pass-div
                             .confirm-pass-div Confirm Password
-                            input.sign-up-input(type="password" name="confirm_password")
+                            input.sign-up-input.confirm-pass-input(type="password" name="confirm_password")
+                            .confirm-pass-error-div
+                            .confirm-pass-valid-div
                     div
                         button.sign-up-button Sign Up
+                        .sign-up-error-div
+                        .sign-up-form-valid-div
             div.login-links
                 div.login-links-top
                     text Already have an account?
@@ -73,3 +83,12 @@ block content
             if errors
                  each error in errors
                     pre.error-style= error
+
+
+
+
+        .hidden-data
+            each user in userList
+                label.existing-user= user.dataValues.username
+            each email in userList
+                label.existing-email= email.dataValues.email
