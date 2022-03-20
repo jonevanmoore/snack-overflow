@@ -175,14 +175,6 @@ router.get('/:id(\\d+)', async (req, res, next) => {
     next(error)
   } else {
     const user_id = user.id
-
-    // const answers = await Answer.findAll({
-    //   where: { user_id },
-    //   include: Question
-    // })
-    // const questions = await Question.findAll({
-    //   where: { user_id }
-    // })
     const answers = user.Answers;
     const questions = user.Questions;
 

@@ -38,8 +38,6 @@ block content
                         th.a Answers for
                     tr
                     each answer in answers
-                        //- each question in questions
-                            //- if answer.dataValues.question_id === question.dataValues.id
                         tr
                             td.answer-td: a(href=`/questions/${answer.question_id}`)= answer.body
             else
