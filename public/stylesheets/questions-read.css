@@ -38,3 +38,8 @@
   align-items: center;
   order: 1;
 }
+
+.Qusername > a {
+  padding: 5px;
+  text-decoration: none;
+}
