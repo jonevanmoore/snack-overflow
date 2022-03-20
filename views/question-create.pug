@@ -1,28 +1,34 @@
 extends layout
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/questions-create.css')
+
 block content
     if errors
         ul.errors
             each error in errors
                 li.error= error
-    div(class="questions-create") 
+    .create-body
         form(action="/questions/new" method="POST")
             input(type="hidden" name="_csrf" value=token)
-            div
-                label(for="title") Title 
+            .title-con
+                .title-label Title 
                 input(type="text" name="title" value=question.title)
-            div 
-                label(for="body") Body 
+            .body-con 
+                .body-label Body 
                 textarea(name="body")= question.body 
-            div 
-                label(for="image_link1") Image URL
-                input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
-            div 
-                label(for="image_link2") Image URL
-                input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
-            div 
-                label(for="image_link3") Image URL
-                input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
-            div 
-                button(type="reset") Cancel
-                button(type="submit") Submit Question 
+            .images-con
+                .image1-con 
+                    .image-link1-label Image URL
+                    input(type="text" name="image_link1" placeholder="..." value=question.image_link1)
+                .image2-con 
+                    .image-link2-label Image URL
+                    input(type="text" name="image_link2" placeholder="..." value=question.image_link2)
+                .image3-con 
+                    .image-link3-label Image URL
+                    input(type="text" name="image_link3" placeholder="..." value=question.image_link3)
+            .edit-btns-con 
+                .submit-con
+                    button.submit-btn(type="submit") Submit 
+                .cancel-con
+                    a.cancel-btn(type="button" href="/questions") Cancel

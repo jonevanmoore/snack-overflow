@@ -5,14 +5,31 @@ append head
 
 block content
 
-    div(id="myModal" class="modal")
-        div(class="modal-content")
+    .modal#myModal
+        .modal-content.modal1
             ul.modal-ul
-                i.fa-brands.fa-linkedin
-                li.modal-link: a(href='https://www.linkedin.com/in/mason-kogami-74b789231/' target='_blank' class="link-hover") Mason Kogami
-                li.modal-link: a(href='https://www.linkedin.com/in/nick-yawn/' target='_blank' class="link-hover") Nick Yuan
-                li.modal-link: a(href='https://www.linkedin.com/in/sam-kramer-3b20b1235/' target='_blank' class="link-hover") Samuel Kramer
-                li.modal-link: a(href='https://www.linkedin.com/in/jonevanmoore/' target='_blank' class="link-hover") Jon Moore
+                li.name.mason Mason Kogami
+                    .icons
+                        i: a(href="https://github.com/MasonKogami" target="_blank").fa-brands.fa-github-square
+                        i: a(href='https://www.linkedin.com/in/mason-kogami-74b789231/' target='_blank').fa-brands.fa-linkedin
+        .modal-content
+            ul.modal-ul
+                li.name.nick Nick Yuan
+                    .icons
+                        i: a(href="https://github.com/Nick-Yawn" target="_blank").fa-brands.fa-github-square
+                        i: a(href='https://www.linkedin.com/in/nick-yawn/' target='_blank').fa-brands.fa-linkedin
+        .modal-content
+            ul.modal-ul
+                li.name.sam Samuel Kramer
+                    .icons
+                        i: a(href="https://github.com/samuelrkramer" target="_blank").fa-brands.fa-github-square
+                        i: a(href='https://www.linkedin.com/in/sam-kramer-3b20b1235/' target='_blank').fa-brands.fa-linkedin
+        .modal-content.modal4
+            ul.modal-ul
+                li.name.jon Jon Moore
+                    .icons
+                        i: a(href="https://github.com/jonevanmoore" target="_blank").fa-brands.fa-github-square
+                        i: a(href='https://www.linkedin.com/in/jonevanmoore/' target='_blank').fa-brands.fa-linkedin
             span(class="close")
 
     .container-all
