@@ -178,7 +178,6 @@ window.addEventListener("DOMContentLoaded", () => {
             usernameValidDiv.appendChild(usernameValid)
             usernameInput.style.border = '1px green solid'
             usernameGood = true
-            console.log(usernameGood, emailGood, passwordGood, confirmPassGood)
         }
         checkValidation()
 
@@ -215,7 +214,6 @@ window.addEventListener("DOMContentLoaded", () => {
             emailValidDiv.appendChild(emailValid)
             emailInput.style.border = '1px green solid'
             emailGood = true
-            console.log(usernameGood, emailGood, passwordGood, confirmPassGood)
         }
         checkValidation()
     })
@@ -233,7 +231,6 @@ window.addEventListener("DOMContentLoaded", () => {
             passwordValidDiv.appendChild(passwordValid)
             passwordInput.style.border = '1px green solid'
             passwordGood = true
-            console.log(usernameGood, emailGood, passwordGood, confirmPassGood)
         }
         checkValidation()
     })
@@ -257,20 +254,12 @@ window.addEventListener("DOMContentLoaded", () => {
             confirmPassValidDiv.appendChild(confirmPassValid)
             confirmPassInput.style.border = '1px green solid'
             confirmPassGood = true
-            console.log(usernameGood, emailGood, passwordGood, confirmPassGood)
         }
         checkValidation()
     })
 
-
-    console.log(usernameGood, emailGood, passwordGood, confirmPassGood)
     if (!usernameGood || !emailGood || !passwordGood || !confirmPassGood) {
         signUpErrorFunc()
-        console.log('NOT GOOD')
     }
-
-
-
-
 
 })
