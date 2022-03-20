@@ -10,7 +10,7 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 
 router.get('/', csrfProtection, async(req, res) => {
     let questions = await Question.findAll({
-        include: User,
+        include: [ User, Answer ],
         order: [ ['updatedAt', 'DESC'] ],
     });
     questions = questions.map(el => {
