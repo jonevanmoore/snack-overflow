@@ -47,7 +47,7 @@ router.post('/', asyncHandler( async(req, res) => {
         res.status(201).json( { score } );
       } catch(e) {
         console.log(e);
-        res.status(500).json();
+        res.status(502).json();
       }
     }
   } else { // inauth
