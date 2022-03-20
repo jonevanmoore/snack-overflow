@@ -91,6 +91,16 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
             attributes: ['username', 'image_link', 'id']
         }, {
             model: Answer,
+            attributes: [
+              'id',
+              'user_id',
+              'question_id',
+              'body',
+              'image_link1',
+              'image_link2',
+              'image_link3',
+              [ sequelize.literal('(SELECT SUM("value") FROM "Votes" as vote WHERE vote.answer_id = "Answers".id)'), 'score' ]
+            ],
             include: [  
               Vote,
               {
@@ -101,13 +111,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         }]
     });
 
-    for( answer of question.Answers){
-      const scoreQuery = await sequelize.query( `SELECT SUM("value") FROM "Votes" WHERE answer_id = ${answer.id}` );
-      answer.score = scoreQuery[0][0].sum;
-    }
-
     if (question) {
-        //console.log( JSON.stringify(question) );
         res.render('question', { token: req.csrfToken(), question });
     } else {
         const error = new Error('Question not found');

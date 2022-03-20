@@ -54,7 +54,7 @@ block content
               .upvote-button.vote-button(id=`upvote-${answer.id}` 
                                          class= locals.authenticated ? 'active' : ''
                                          class= userVoteValue === 1 ? 'engaged' : '')
-              .score(id=`score-${answer.id}`)= answer.score
+              .score(id=`score-${answer.id}`)= answer.dataValues.score
               .downvote-button.vote-button(id=`downvote-${answer.id}` 
                                            class= locals.authenticated ? 'active' : ''
                                            class= userVoteValue === -1 ? 'engaged' : '') 
