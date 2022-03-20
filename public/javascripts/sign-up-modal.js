@@ -127,6 +127,7 @@ window.addEventListener("DOMContentLoaded", () => {
         userSignUpDiv.style.height = '380px'
         signUpCriteria.style.paddingTop = '5px'
         signUpFormValidDiv.innerHTML = ''
+        signUpButton.className = 'sign-up-button-unclickable'
         signUpButton.onclick = (e) => {
             signUpErrorDiv.appendChild(signUpError)
             e.preventDefault()
@@ -136,6 +137,7 @@ window.addEventListener("DOMContentLoaded", () => {
     function signUpComplete() {
         signUpErrorDiv.innerHTML = ''
         signUpFormValidDiv.appendChild(signUpFormValid)
+        signUpButton.className = 'sign-up-button'
         signUpButton.onclick = (e) => {
             e.stopPropagation()
         }

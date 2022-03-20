@@ -145,22 +145,23 @@ ul {
     margin: 2px 0px;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid rgba(10,149,255,.3);
+    border: 1px solid rgba(0, 74, 131, 0.3);
     background-color: rgb(10, 149, 255);
     color: white;
     margin-top: 10px;
     width: 278px;
   }
   .sign-up-button:hover {
-    background-color: rgb(3, 104, 180);
+    background-color: rgb(0, 98, 173);
+    border: 1px solid rgb(0, 126, 223);
   }
   .sign-up-button-unclickable {
     margin: 2px 0px;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid rgba(10,149,255,.3);
-    background-color: rgb(168, 168, 168);
-    color: rgb(0, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(197, 197, 197);
+    color: rgb(255, 255, 255);
     margin-top: 10px;
     width: 278px;
   }
