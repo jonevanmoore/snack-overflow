@@ -5,6 +5,7 @@ block content
         - noun = (questions.length === 1) ? noun : noun + 's'
         h1.totalQs #{questions.length} #{noun}
         each question in questions 
+            //- - const ansLength = (question.Answers.length) ? question.Answers.length : 0
             hr 
             //- div.qStats 
             //-     div.votes 
@@ -15,6 +16,8 @@ block content
                 a(href=`/questions/${question.id}`)= question.title 
                 .Qpreview= question.preview 
                 .Qusername Posted by 
-                    a(href=`/users/${question.User.id}`) #{question.User.username}
+                    a(href=`/users/${question.User.id}`): b #{question.User.username}
+                    if question.Answers.length > 0
+                        span - #{question.Answers.length} answers
                 - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                 .Qoptions= question.createdAt.toLocaleString('en-US', options)
