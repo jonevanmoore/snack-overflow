@@ -36,11 +36,5 @@
   border-radius: 8px;
   display: flex;
   align-items: center;
-  order: 2;
-}
-
-.Qusername {
-  color: rgba(0,0,0,.5);
-  padding-right: 6px;
-  font-size: 14px;
+  order: 1;
 }
