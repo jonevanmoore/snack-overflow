@@ -76,5 +76,33 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
       // on success, delete entire section
     });
+    
+    // VOTE BUTTONS
+    const voteButtons = document.querySelectorAll('.vote-button');
+
+    voteButtons.forEach( button => {
+      const answer_id = button.id.split('-')[1];
+      const question_id = window.location.pathname.split('/')[2];
+      let value;
+      if( button.classList.contains('upvote-button') )
+        value = 1;
+      else
+        value = -1;
+
+      if( button.classList.contains('active') ){
+        const body = { answer_id, question_id, value }
+        button.addEventListener('click', event => {
+          fetch('/votes', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+          }).then( response => response.json())
+            .then( data => {
+              const score = document.getElementById(`score-${answer_id}`)
+              score.innerText = Number(score.innerText) + data.delta    
+            }).catch( error => console.log(error));
+        });
+      }  
+    });
 
 })

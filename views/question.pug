@@ -46,10 +46,10 @@ block content
         each answer in question.Answers
           div.answer(id=`answer-${answer.id}`)
             .sidebar
-              .upvote-button.vote-button
-              - const score = answer.Votes.reduce( (sum, vote) => {sum + vote.value}, 0)
-              .score= score === 0 ? '' : score
-              .downvote-button.vote-button 
+              .upvote-button.vote-button(id=`upvote-${answer.id}` class= locals.authenticated ? 'active' : '')
+              - const score = answer.score
+              .score(id=`score-${answer.id}`)= score === 0 ? '' : score
+              .downvote-button.vote-button(id=`downvote-${answer.id}` class= locals.authenticated ? 'active' : '') 
             .answer-body
               - const answerDivs = answer.body.split('\n')
               .content

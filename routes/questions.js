@@ -2,6 +2,7 @@ const express = require('express');
 const csrf = require('csurf');
 const { check, validationResult } = require('express-validator');
 const { Question, User, Answer, Vote } = require('../db/models');
+const { sequelize } = require('../db/models/index');
 const router = express.Router();
 
 const csrfProtection = csrf({ cookie: true });
@@ -90,12 +91,20 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
             attributes: ['username', 'image_link', 'id']
         }, {
             model: Answer,
-            include: [ Vote,{
-              model: User,
-              attributes: ['username', 'image_link', 'id']
-            }]
+            include: [  
+              Vote,
+              {
+                model: User,
+                attributes: ['username', 'image_link', 'id']
+              }
+            ] 
         }]
     });
+
+    for( answer of question.Answers){
+      const scoreQuery = await sequelize.query( `SELECT SUM("value") FROM "Votes" WHERE answer_id = ${answer.id}` );
+      answer.score = scoreQuery[0][0].sum;
+    }
 
     if (question) {
         //console.log( JSON.stringify(question) );
