@@ -34,7 +34,6 @@ router.post('/', asyncHandler( async(req, res) => {
           res.status(501).json();
         }
       } else {
-        console.log(vote.value, value)
         res.status(405).json();
       }
     } else {

@@ -78,9 +78,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
     
     // VOTE BUTTONS
-    const voteButtons = document.querySelectorAll('.vote-button');
+    const voteButtons = document.querySelectorAll('.vote-button')
+    
 
-    voteButtons.forEach( button => {
+    voteButtons.forEach( button => {        
+
       const answer_id = button.id.split('-')[1];
       const question_id = window.location.pathname.split('/')[2];
       const score = document.getElementById(`score-${answer_id}`)
@@ -106,13 +108,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
             body: JSON.stringify(body) 
           }).then( response => {
             if ( response.status === 200 ){
-              button.classList.remove('engaged');
-              button.removeEventListener('click', disengageVote);
-              button.addEventListener('click', engageVote);
               return response.json();
             }
           }).then( data => {
             if( data ){
+              button.classList.remove('engaged');
+              button.removeEventListener('click', disengageVote);
+              button.addEventListener('click', engageVote);
               score.innerText = data.score
             } 
           } ).catch( error => console.log(error) ); 
@@ -129,16 +131,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
           }).then( response => {
             if( response.status === 200 || response.status === 201 ){
               // set button to 'engaged', toggle function 
-              button.classList.add('engaged');                  
-              button.removeEventListener('click', engageVote);
-              button.addEventListener('click', disengageVote);     
               return response.json();
             }
           }).then( data => {
             if( data ){
+              button.removeEventListener('click', engageVote); 
+              button.addEventListener('click', disengageVote);     
               score.innerText = data.score;
               disengageOtherButton(button, answer_id);
-              // we need to disengage the other button, if applicable
+              button.classList.add('engaged'); 
             }
           }).catch( error => console.log(error));
         };
