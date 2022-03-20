@@ -6,14 +6,13 @@ block content
         h1.totalQs #{questions.length} #{noun}
         each question in questions
             hr
-            //- div.qStats
-            //-     div.votes
-            //-         p #{questions.Vote.voteTotal} votes
-            //-     div.answers
-            //-         p #{questions.Answer.length} answers
             .questionBox
                 a(href=`/questions/${question.id}`)= question.title
                 .Qpreview= question.preview
-                .Qusername Posted by #{question.User.username}
+                .Qusername Posted by
+                    a(href=`/users/${question.User.id}`): b #{question.User.username}
+                    if question.Answers.length > 0
+                        | &nbsp; |
+                        |#{question.Answers.length} answers
                 - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                 .Qoptions= question.createdAt.toLocaleString('en-US', options)
