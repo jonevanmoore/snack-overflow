@@ -154,6 +154,16 @@ ul {
   .sign-up-button:hover {
     background-color: rgb(3, 104, 180);
   }
+  .sign-up-button-unclickable {
+    margin: 2px 0px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(10,149,255,.3);
+    background-color: rgb(168, 168, 168);
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    width: 278px;
+  }
 
   .login-links {
     display: flex;

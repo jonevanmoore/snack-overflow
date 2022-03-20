@@ -155,24 +155,28 @@ window.addEventListener("DOMContentLoaded", () => {
             usernameValidDiv.innerHTML = ''
             usernameErrorDiv.appendChild(usernameTaken)
             usernameGood = false;
+            signUpErrorFunc()
         } else if (usernameInput.value.length > 20 && !userList.includes(usernameInput.value)) {
             usernameInput.style.border = '1px red solid'
             usernameErrorDiv.innerHTML = ''
             usernameValidDiv.innerHTML = ''
             usernameErrorDiv.appendChild(usernameLong)
             usernameGood = false;
+            signUpErrorFunc()
         } else if (usernameInput.value.length < 1 && !userList.includes(usernameInput.value)) {
             usernameInput.style.border = '1px red solid'
             usernameErrorDiv.innerHTML = ''
             usernameValidDiv.innerHTML = ''
             usernameErrorDiv.appendChild(usernameShort)
             usernameGood = false;
+            signUpErrorFunc()
         } else if (usernameInput.value.includes(' ') && usernameInput.value.length >= 1 && usernameInput.value.length <= 20 && !userList.includes(usernameInput.value)) {
             usernameInput.style.border = '1px red solid'
             usernameErrorDiv.innerHTML = ''
             usernameValidDiv.innerHTML = ''
             usernameErrorDiv.appendChild(usernameNull)
             usernameGood = false;
+            signUpErrorFunc()
         } else if (usernameInput.value.length >= 1 && usernameInput.value.length <= 20 && !userList.includes(usernameInput.value)) {
             usernameErrorDiv.innerHTML = ''
             usernameValidDiv.appendChild(usernameValid)
@@ -191,24 +195,28 @@ window.addEventListener("DOMContentLoaded", () => {
             emailValidDiv.innerHTML = ''
             emailErrorDiv.appendChild(emailTaken)
             emailGood = false;
+            signUpErrorFunc()
         } else if (emailInput.value.length > 20 && !emailList.includes(emailInput.value)) {
             emailInput.style.border = '1px red solid'
             emailErrorDiv.innerHTML = ''
             emailValidDiv.innerHTML = ''
             emailErrorDiv.appendChild(emailLong)
             emailGood = false;
+            signUpErrorFunc()
         } else if (emailInput.value.length < 3 && !emailList.includes(emailInput.value)) {
             emailInput.style.border = '1px red solid'
             emailErrorDiv.innerHTML = ''
             emailValidDiv.innerHTML = ''
             emailErrorDiv.appendChild(emailShort)
             emailGood = false;
+            signUpErrorFunc()
         } else if (emailInput.value.includes(' ') && emailInput.value.length <= 20 && emailInput.value.length >= 3) {
             emailInput.style.border = '1px red solid'
             emailErrorDiv.innerHTML = ''
             emailValidDiv.innerHTML = ''
             emailErrorDiv.appendChild(emailNull)
             emailGood = false;
+            signUpErrorFunc()
         } else if (emailInput.value.length >= 1 && emailInput.value.length <= 20 && !emailList.includes(emailInput.value)) {
             emailErrorDiv.innerHTML = ''
             emailValidDiv.appendChild(emailValid)
@@ -226,6 +234,7 @@ window.addEventListener("DOMContentLoaded", () => {
             passwordValidDiv.innerHTML = ''
             passwordErrorDiv.appendChild(passwordNull)
             passwordGood = false;
+            signUpErrorFunc()
         } else if (passwordInput.value.length) {
             passwordErrorDiv.innerHTML = ''
             passwordValidDiv.appendChild(passwordValid)
@@ -243,12 +252,14 @@ window.addEventListener("DOMContentLoaded", () => {
             confirmPassValidDiv.innerHTML = ''
             confirmPassErrorDiv.appendChild(confirmPassNotMatched)
             confirmPassGood = false
+            signUpErrorFunc()
         } else if (!confirmPassInput.value) {
             confirmPassInput.style.border = '1px red solid'
             confirmPassErrorDiv.innerHTML = ''
             confirmPassValidDiv.innerHTML = ''
             confirmPassErrorDiv.appendChild(confirmPassNotMatched)
             confirmPassGood = false
+            signUpErrorFunc()
         } else if (confirmPassInput.value === passwordInput.value) {
             confirmPassErrorDiv.innerHTML = ''
             confirmPassValidDiv.appendChild(confirmPassValid)
