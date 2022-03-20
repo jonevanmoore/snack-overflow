@@ -12,6 +12,7 @@ block content
                 .Qusername Posted by 
                     a(href=`/users/${question.User.id}`): b #{question.User.username}
                     if question.Answers.length > 0
-                        span - #{question.Answers.length} answers
+                        | &nbsp; | 
+                        |#{question.Answers.length} answers
                 - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                 .Qoptions= question.createdAt.toLocaleString('en-US', options)
