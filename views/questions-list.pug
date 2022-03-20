@@ -16,6 +16,6 @@ block content
                     - numAnswers = question.Answers.length
                     .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
                     .Qusername Posted by 
-                        a(href=`/users/${question.User.id}`): b #{question.User.username}
+                        a(href=`/users/${question.User.id}`) #{question.User.username}
                         - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                         .Qoptions= question.createdAt.toLocaleString('en-US', options)
