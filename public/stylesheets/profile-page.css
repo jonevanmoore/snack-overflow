@@ -129,3 +129,8 @@ table {
     left: 200px;
     margin: 10px;
 }
+
+.question-td,
+.answer-td {
+    max-width: 80px;
+}
