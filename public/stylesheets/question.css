@@ -162,7 +162,11 @@
   height: 70%;
   background-color: rgba(0,0,0,.3);
 }
-  
+ 
+.engaged {
+  background-color: rgba(0,0,0,.7);
+}
+ 
 .editing {
   border: 1px solid rgba(0,0,0,.2);
   background-color: white;

@@ -214,53 +214,94 @@ a {
     text-decoration: none;
 }
 
-.fa-linkedin {
-    display: flex;
-    justify-content: center;
-    font-size: 80px;
-    padding-bottom: 20px;
-    color: #0e76a8;
-}
-
 .modal-content {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 250px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 200px;
 
-    background-color: white;
-    opacity: 98%;
-    margin: 0 500px 0 500px;
-    border-radius: 10px;
+  background-color: white;
+  opacity: 98%;
+  margin: 0 500px 0 500px;
 }
-.modal-link {
-    margin-bottom: 20px;
-}
-.link-hover:hover {
-    color: #0e76a8;
+.modal-content:hover {
+  background-color: rgb(231, 230, 230);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
 }
 
 #modalBtn {
-    background-color: transparent;
-    border: 1px solid transparent;
-    color:rgb(10, 149, 255);
-    font-size: 12px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color:rgb(10, 149, 255);
+  font-size: 12px;
 }
 #modalBtn:hover {
-    color: #0e76a8;
+  color: #0e76a8;
 }
 
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fa-linkedin {
+  color: #0e76a8;
+  font-size: 60px;
+  position: relative;
+  left: 20px;
+  top: 3px;
+  opacity: 70%;
+}
+.fa-github-square {
+  color: #000000;
+  font-size: 60px;
+  position: relative;
+  right: 20px;
+  top: 3px;
+  opacity: 70%;
+}
+.fa-linkedin:hover,
+.fa-github-square:hover {
+  opacity: 100%;
+  -webkit-transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+
+.name {
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+  padding: 5px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+}
+
+.icons {
+  text-align: center;
+}
+
+.modal1{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-image: linear-gradient(180deg, rgb(240, 240, 240), rgb(255, 255, 255));
+}
+.modal1:hover{
+  background-image: none;
+}
+.modal4{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

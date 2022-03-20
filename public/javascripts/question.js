@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-
+    
     const editButtons = document.querySelectorAll(".answer-edit")
 
     editButtons.forEach(button => {
@@ -76,5 +76,69 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
       // on success, delete entire section
     });
+    
+    // VOTE BUTTONS
+    const voteButtons = document.querySelectorAll('.vote-button')
+    
+
+    voteButtons.forEach( button => {        
+
+      const answer_id = button.id.split('-')[1];
+      const question_id = window.location.pathname.split('/')[2];
+      const score = document.getElementById(`score-${answer_id}`)
+      
+      const getValue = event => {
+        if( event.target.classList.contains('upvote-button') ){
+          return event.target.classList.contains('engaged') ? 0 : 1
+        }else{
+          return event.target.classList.contains('engaged') ? 0 : -1
+        }
+      }
+      
+      if( button.classList.contains('active') ){
+        const toggleVote = event => {
+          let value = getValue(event);
+          const thisButton = event.target;
+          const body = { answer_id, question_id, value }
+          fetch('/votes', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+          }).then( response => {
+            if( response.status === 200 || response.status === 201 ){
+              return response.json();
+            }
+          }).then( data => {
+            if( data ){
+              score.innerText = data.score;
+              if( value === 0 ){
+                thisButton.classList.remove('engaged');     
+              } else {
+                thisButton.classList.add('engaged');   
+                disengageOtherButton(thisButton, answer_id);
+              }
+              
+            }
+          }).catch( error => console.log(error));
+        };
+
+        const disengageOtherButton = (aButton, answer_id) => {
+          let otherButton;
+          if( aButton.className.includes('upvote') ){
+            otherButton = document.getElementById(`downvote-${answer_id}`);
+          } else if( aButton.className.includes('downvote') ){
+            otherButton = document.getElementById(`upvote-${answer_id}`);
+          }
+
+          if( otherButton.className.includes('engaged') ){
+            otherButton.classList.remove('engaged');
+          }
+        }
+
+        button.addEventListener('click', toggleVote);
+      }  
+    });
+
 
 })
+
