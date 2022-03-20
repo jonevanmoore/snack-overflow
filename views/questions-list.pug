@@ -13,10 +13,9 @@ block content
                 a(href=`/questions/${question.id}` class="question-title")= question.title 
                 .Qpreview= question.preview
                 .Qbox 
+                    - numAnswers = question.Answers.length
+                    .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
                     .Qusername Posted by 
                         a(href=`/users/${question.User.id}`): b #{question.User.username}
-                        if question.Answers.length > 0
-                            | &nbsp; | 
-                            |#{question.Answers.length} answers
-                    - const options = { month: 'short', day: 'numeric', year: 'numeric'}
-                    .Qoptions= question.createdAt.toLocaleString('en-US', options)
+                        - const options = { month: 'short', day: 'numeric', year: 'numeric'}
+                        .Qoptions= question.createdAt.toLocaleString('en-US', options)
