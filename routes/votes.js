@@ -9,19 +9,19 @@ router.post('/', asyncHandler( async(req, res) => {
   if( req.session.auth ){
     const user_id = req.session.auth.userId;
     const { question_id, answer_id, value } = req.body;
-
+ 
     const vote = await Vote.findOne({
       where: {
-        user_id: Number(user_id),
-        answer_id: Number(answer_id)
+        user_id,
+        answer_id
       }
     });
-
     const scoreQuery = await sequelize.query( `SELECT SUM("value") FROM "Votes" WHERE answer_id = ${answer_id}` );
     let score = Number(scoreQuery[0][0].sum);
-    const oldValue = Number(vote.value); 
+    const oldValue = vote ? vote.value : 0 
     const change = value - oldValue;
     score+= change;
+
 
     if( vote ){
       if( vote.value !== value ){
