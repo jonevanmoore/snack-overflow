@@ -1,7 +1,7 @@
 let express = require('express');
 const bcrypt = require('bcryptjs');
 const csrf = require("csurf");
-const { User, Answer, Question } = require('../db/models');
+const { User, Answer, Question, Vote } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 let router = express.Router();
 
@@ -176,7 +176,15 @@ router.get('/:id(\\d+)', async (req, res, next) => {
     const user_id = user.id
 
     const answers = await Answer.findAll({
-      where: { user_id }
+      where: { user_id },
+      include: Vote
+    })
+    answers.forEach(el => {
+      console.log(el);
+      console.log(el.Vote);
+      // el.score = el.Vote.reduce((sum, vote) => {
+      //   return sum + vote.value}, 0);
+      
     })
     const questions = await Question.findAll({
       where: { user_id }
