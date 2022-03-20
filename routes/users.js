@@ -167,25 +167,31 @@ router.get('/logout', (req, res) => {
   logoutUser(req, res, '/users/login')
 });
 
-router.get('/:id(\\d+)', async (req, res) => {
-  const user = await User.findByPk(req.params.id)
-  const user_id = user.id
+router.get('/:id(\\d+)', async (req, res, next) => {
+  const user = await User.findByPk(Number(req.params.id))
+  if (!user) {
+    const error = new Error('User doesn\'t exist')
+    error.status = 404
+    next(error)
+  } else {
+    const user_id = user.id
 
-  const answers = await Answer.findAll({
-    where: { user_id }
-  })
-  const questions = await Question.findAll({
-    where: { user_id }
-  })
+    const answers = await Answer.findAll({
+      where: { user_id }
+    })
+    const questions = await Question.findAll({
+      where: { user_id }
+    })
 
-  const randomPics = [
-    "https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg",
-    "https://www.denverpost.com/wp-content/uploads/2016/05/20110819__20110820_B06_BZ20KINGSHELFp1.jpg",
-    "https://img.buzzfeed.com/buzzfeed-static/static/2015-07/16/11/campaign_images/webdr01/the-truth-behind-your-favorite-food-mascots-2-2677-1437059125-6_dblbig.jpg",
-    "https://loonietimes.com/wp-content/uploads/2019/07/Maple-leaf-Food.jpg"
-  ]
-  const pic = randomPics[Math.floor(Math.random() * randomPics.length)]
+    const randomPics = [
+      "https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg",
+      "https://www.denverpost.com/wp-content/uploads/2016/05/20110819__20110820_B06_BZ20KINGSHELFp1.jpg",
+      "https://img.buzzfeed.com/buzzfeed-static/static/2015-07/16/11/campaign_images/webdr01/the-truth-behind-your-favorite-food-mascots-2-2677-1437059125-6_dblbig.jpg",
+      "https://loonietimes.com/wp-content/uploads/2019/07/Maple-leaf-Food.jpg"
+    ]
+    const pic = randomPics[Math.floor(Math.random() * randomPics.length)]
 
-  res.render("profile-page", { user, answers, questions, pic })
+    res.render("profile-page", { user, answers, questions, pic })
+  }
 })
 module.exports = router;

@@ -1,4 +1,3 @@
-
 window.addEventListener("DOMContentLoaded", () => {
     // MODAL STUFF
     const btn = document.getElementById("modalBtn");
