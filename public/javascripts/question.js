@@ -83,26 +83,92 @@ window.addEventListener("DOMContentLoaded", (event) => {
     voteButtons.forEach( button => {
       const answer_id = button.id.split('-')[1];
       const question_id = window.location.pathname.split('/')[2];
-      let value;
-      if( button.classList.contains('upvote-button') )
-        value = 1;
-      else
-        value = -1;
-
+      const score = document.getElementById(`score-${answer_id}`)
+      
+      const getValue = event => {
+        if( event.target.classList.contains('upvote-button') ){
+          return event.target.classList.contains('engaged') ? 0 : 1
+        }else{
+          return event.target.classList.contains('engaged') ? 0 : -1
+        }
+      }
+      
       if( button.classList.contains('active') ){
-        const body = { answer_id, question_id, value }
-        button.addEventListener('click', event => {
+
+        // these two functions must be named so they can be removed
+        const disengageVote = event => {
+          let value = getValue(event);
+          const button = event.target; // missing this line gave me the WORST bug
+          const body = { answer_id, question_id, value }; // this lets us reuse the route
+          fetch('/votes', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body) 
+          }).then( response => {
+            if ( response.status === 200 ){
+              button.classList.remove('engaged');
+              button.removeEventListener('click', disengageVote);
+              button.addEventListener('click', engageVote);
+              return response.json();
+            }
+          }).then( data => {
+            if( data ){
+              score.innerText = data.score
+            } 
+          } ).catch( error => console.log(error) ); 
+        };
+
+        const engageVote = event => {
+          let value = getValue(event);
+          const button = event.target; // ditto above. scoping nightmare.
+          const body = { answer_id, question_id, value }
           fetch('/votes', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
-          }).then( response => response.json())
-            .then( data => {
-              const score = document.getElementById(`score-${answer_id}`)
-              score.innerText = Number(score.innerText) + data.delta    
-            }).catch( error => console.log(error));
-        });
+          }).then( response => {
+            if( response.status === 200 || response.status === 201 ){
+              // set button to 'engaged', toggle function 
+              button.classList.add('engaged');                  
+              button.removeEventListener('click', engageVote);
+              button.addEventListener('click', disengageVote);     
+              return response.json();
+            }
+          }).then( data => {
+            if( data ){
+              score.innerText = data.score;
+              disengageOtherButton(button, answer_id);
+              // we need to disengage the other button, if applicable
+            }
+          }).catch( error => console.log(error));
+        };
+
+
+        function disengageOtherButton (button, answer_id) {
+          let otherButton;
+          if( button.className.includes('upvote') ){
+            otherButton = document.getElementById(`downvote-${answer_id}`);
+          } else if( button.className.includes('downvote') ){
+            otherButton = document.getElementById(`upvote-${answer_id}`);
+          }
+
+          if( otherButton.className.includes('engaged') ){
+            otherButton.classList.remove('engaged');
+            otherButton.removeEventListener('click', disengageVote);
+            otherButton.addEventListener('click', engageVote);
+          }
+        }
+
+
+        // the engaged class is applied on initial page load, if applicable
+        if( button.className.includes('engaged') ){
+          button.addEventListener('click', disengageVote);
+        } else {
+          button.addEventListener('click', engageVote);
+        }
       }  
     });
 
+
 })
+
