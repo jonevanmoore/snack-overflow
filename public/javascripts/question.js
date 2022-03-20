@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-
+    
     const editButtons = document.querySelectorAll(".answer-edit")
 
     editButtons.forEach(button => {
@@ -100,7 +100,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         // these two functions must be named so they can be removed
         const disengageVote = event => {
           let value = getValue(event);
-          const button = event.target; // missing this line gave me the WORST bug
+          const thisButton = event.target; // missing this line gave me the WORST bug
           const body = { answer_id, question_id, value }; // this lets us reuse the route
           fetch('/votes', {
             method: 'POST',
@@ -112,9 +112,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
           }).then( data => {
             if( data ){
-              button.classList.remove('engaged');
-              button.removeEventListener('click', disengageVote);
-              button.addEventListener('click', engageVote);
+              thisButton.classList.remove('engaged');
+              thisButton.removeEventListener('click', disengageVote);
+              thisButton.addEventListener('click', engageVote);
               score.innerText = data.score
             } 
           } ).catch( error => console.log(error) ); 
@@ -122,7 +122,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         const engageVote = event => {
           let value = getValue(event);
-          const button = event.target; // ditto above. scoping nightmare.
+          const thisButton = event.target; // ditto above. scoping nightmare.
           const body = { answer_id, question_id, value }
           fetch('/votes', {
             method: 'POST',
@@ -130,26 +130,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
             body: JSON.stringify(body)
           }).then( response => {
             if( response.status === 200 || response.status === 201 ){
-              // set button to 'engaged', toggle function 
               return response.json();
             }
           }).then( data => {
             if( data ){
-              button.removeEventListener('click', engageVote); 
-              button.addEventListener('click', disengageVote);     
+              thisButton.removeEventListener('click', engageVote); 
+              thisButton.addEventListener('click', disengageVote);     
               score.innerText = data.score;
-              disengageOtherButton(button, answer_id);
-              button.classList.add('engaged'); 
+              disengageOtherButton(thisButton, answer_id);
+              thisButton.classList.add('engaged'); 
             }
           }).catch( error => console.log(error));
         };
 
-
-        function disengageOtherButton (button, answer_id) {
+        // this works every time.
+        function disengageOtherButton (aButton, answer_id) {
           let otherButton;
-          if( button.className.includes('upvote') ){
+          if( aButton.className.includes('upvote') ){
             otherButton = document.getElementById(`downvote-${answer_id}`);
-          } else if( button.className.includes('downvote') ){
+          } else if( aButton.className.includes('downvote') ){
             otherButton = document.getElementById(`upvote-${answer_id}`);
           }
 
