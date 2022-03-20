@@ -51,6 +51,6 @@ block content
                     tr
                     each answer in answers
                         tr
-                            td.answer-td: a(href=`/questions/${answer.question_id}`)= answer.body
+                            td.answer-td: a(href=`/questions/${answer.question_id}#ans-${answer.id}`)= answer.body
             else
                 text.no.noA No Answers Yet

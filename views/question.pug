@@ -49,6 +49,7 @@ block content
       if question.Answers
         - question.Answers.sort( (a, b) => a.createdAt - b.createdAt )
         each answer in question.Answers
+          a(name=`ans-${answer.id}`)
           div.answer(id=`answer-${answer.id}`)
             .sidebar
               - let userVoteValue = 0;
