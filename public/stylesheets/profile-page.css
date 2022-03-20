@@ -30,6 +30,9 @@
     right: 25px;
     bottom: 2px;
 }
+.mem {
+    padding-left: 3px;
+}
 .member-since-div {
     display: flex;
     justify-content: space-evenly;
@@ -128,4 +131,9 @@ table {
     position: relative;
     left: 200px;
     margin: 10px;
+}
+
+.question-td,
+.answer-td {
+    max-width: 80px;
 }

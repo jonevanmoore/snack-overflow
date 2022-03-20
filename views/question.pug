@@ -28,16 +28,21 @@ block content
             - const paragraphs = question.body.split('\n')
             each paragraph in paragraphs
               p= paragraph
-            if question.image_link1
-              img(src=question.image_link1)
+            .image_div
+              if question.image_link1
+                img.img_link.img1(src=question.image_link1)
+              if question.image_link2
+                img.img_link.img2(src=question.image_link2)
+              if question.image_link3
+                img.img_link.img3(src=question.image_link3)
           .post-controls.controls
             .post-user.user-box
               text.user-label posted by
               text= question.User.username
-  
+
             - numAnswers = question.Answers.length
             .number-of-answers= numAnswers > 0 ? question.Answers.length + ` Answer${ numAnswers > 1 ? 's' : '' }` : 'No answers yet!'
-            .post-edit  
+            .post-edit
               if locals.authenticated && locals.user.id === question.user_id
                 form(action=`/questions/${question.id}/edit`)
                   button.edit-button.question-button Edit
@@ -49,22 +54,22 @@ block content
               - let userVoteValue = 0;
                 if locals.authenticated
                   - const userVote = answer.Votes.find( vote => vote.user_id === locals.user.id )
-                    if userVote 
+                    if userVote
                       - userVoteValue = userVote.value
-              .upvote-button.vote-button(id=`upvote-${answer.id}` 
+              .upvote-button.vote-button(id=`upvote-${answer.id}`
                                          class= locals.authenticated ? 'active' : ''
                                          class= userVoteValue === 1 ? 'engaged' : '')
               .score(id=`score-${answer.id}`)= answer.dataValues.score
-              .downvote-button.vote-button(id=`downvote-${answer.id}` 
+              .downvote-button.vote-button(id=`downvote-${answer.id}`
                                            class= locals.authenticated ? 'active' : ''
-                                           class= userVoteValue === -1 ? 'engaged' : '') 
+                                           class= userVoteValue === -1 ? 'engaged' : '')
             .answer-body
               - const answerDivs = answer.body.split('\n')
               .content
                 each answerDiv in answerDivs
                   p= answerDiv
               .answer-controls.controls
-                .answer-user.user-box 
+                .answer-user.user-box
                   text.user-label posted by
                   text= answer.User.username
                 .answer-buttons
