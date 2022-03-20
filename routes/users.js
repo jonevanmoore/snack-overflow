@@ -180,11 +180,12 @@ router.get('/:id(\\d+)', async (req, res, next) => {
       include: Vote
     })
     answers.forEach(el => {
-      console.log(el);
-      console.log(el.Vote);
-      // el.score = el.Vote.reduce((sum, vote) => {
-      //   return sum + vote.value}, 0);
-      
+      console.log("===================================");
+      console.log(el.Votes);
+      el.score = el.Votes.reduce((sum, vote) => {
+        return sum + vote.value
+      }, 0);
+      console.log(el.score);
     })
     const questions = await Question.findAll({
       where: { user_id }
