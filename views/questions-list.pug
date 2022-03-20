@@ -14,6 +14,7 @@ block content
             .questionBox 
                 a(href=`/questions/${question.id}`)= question.title 
                 .Qpreview= question.preview 
-                .Qusername Posted by #{question.User.username}
+                .Qusername Posted by 
+                    a(href=`/users/${question.User.id}`) #{question.User.username}
                 - const options = { month: 'short', day: 'numeric', year: 'numeric'}
                 .Qoptions= question.createdAt.toLocaleString('en-US', options)
