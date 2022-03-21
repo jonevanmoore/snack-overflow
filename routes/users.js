@@ -173,6 +173,10 @@ router.get('/:id(\\d+)', async (req, res, next) => {
         model: Answer,
         include: Vote
       }
+    ],
+    order: [
+      [ Question, 'updatedAt', 'DESC' ],
+      [ Answer, 'updatedAt', 'DESC' ]
     ]
   });
   if (!user) {
