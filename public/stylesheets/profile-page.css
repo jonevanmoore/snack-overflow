@@ -64,7 +64,11 @@
     color: #6A737C;
 }
 
-.answers-length {
+.questions-length {
+    position: relative;
+    right: 10px;
+}
+.score-length {
     position: relative;
     left: 10px;
 }
@@ -104,6 +108,13 @@ table {
 
 a {
     text-decoration: none;
+}
+
+.scorePos {
+    color: green;
+}
+.scoreNeg {
+    color: red;
 }
 
 tr:nth-child(even){background-color: #d4d8ff;}
