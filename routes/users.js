@@ -167,8 +167,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/:id(\\d+)', async (req, res, next) => {
-  const user = await User.findByPk(Number(req.params.id),
-    { include: [ Question, Answer ] });
+  const user = await User.findByPk(Number(req.params.id), {
+    include: [ Question, Answer ],
+    order: [
+      [ Question, 'updatedAt', 'DESC' ],
+      [ Answer, 'updatedAt', 'DESC' ]
+    ]
+  });
   if (!user) {
     const error = new Error('User doesn\'t exist')
     error.status = 404
