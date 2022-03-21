@@ -82,13 +82,13 @@
     border-radius: 4px;
     color: white;
     background-color: rgb(200, 0, 0);
-    width: 102px;
+    width: 150px;
     padding: 10px;
     border: none;
 }
 
 .edit-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: row;
 }

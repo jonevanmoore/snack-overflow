@@ -32,6 +32,6 @@ block content
                     button.submit-edit(type='submit') Save
                 .cancel-div
                     a.cancel-edit(type='button' href=`/questions/${question.id}`) Cancel
-                .delete-div
-                    form(action=`/questions/${question.id}/delete` method="POST")
-                        button.delete-edit(type='submit') Delete
+    .delete-div
+        form(action=`/questions/${question.id}/delete` method="POST")
+            button.delete-edit Delete Question
