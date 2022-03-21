@@ -64,7 +64,11 @@
     color: #6A737C;
 }
 
-.answers-length {
+.questions-length {
+    position: relative;
+    right: 10px;
+}
+.score-length {
     position: relative;
     left: 10px;
 }

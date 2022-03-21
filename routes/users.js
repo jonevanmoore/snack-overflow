@@ -185,14 +185,17 @@ router.get('/:id(\\d+)', async (req, res, next) => {
     const questions = user.Questions;
 
     // console.log(answers);
+    user.score = 0;
     answers.forEach(el => {
       console.log("===================================");
       console.log(el.Votes);
       el.score = el.Votes.reduce((sum, vote) => {
         return sum + vote.value
       }, 0);
-      console.log(el.score);
+      user.score += el.score;
+      // console.log(el.score);
     })
+    // console.log("user", user.score)
 
     const randomPics = [
       "https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg",
