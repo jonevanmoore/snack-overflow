@@ -4,13 +4,14 @@
      width: 200px;
      object-fit: fill;
      border-radius: 100px;
-     box-shadow: 0px 10px 25px rgba(0,0,0,.30);
+     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .user-info-div{
     text-align: center;
     position: relative;
     bottom: 150px;
+    height: 45%;
 }
 
 .pic-and-name {
