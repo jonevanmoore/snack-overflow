@@ -1,7 +1,7 @@
 let express = require('express');
 const bcrypt = require('bcryptjs');
 const csrf = require("csurf");
-const { User, Answer, Question } = require('../db/models');
+const { User, Answer, Question, Vote } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 let router = express.Router();
 
@@ -168,7 +168,12 @@ router.get('/logout', (req, res) => {
 
 router.get('/:id(\\d+)', async (req, res, next) => {
   const user = await User.findByPk(Number(req.params.id), {
-    include: [ Question, Answer ],
+    include: [
+      Question, {
+        model: Answer,
+        include: Vote
+      }
+    ],
     order: [
       [ Question, 'updatedAt', 'DESC' ],
       [ Answer, 'updatedAt', 'DESC' ]
@@ -182,6 +187,16 @@ router.get('/:id(\\d+)', async (req, res, next) => {
     const user_id = user.id
     const answers = user.Answers;
     const questions = user.Questions;
+
+    user.score = 0;
+    answers.forEach(el => {
+      console.log("===================================");
+      console.log(el.Votes);
+      el.score = el.Votes.reduce((sum, vote) => {
+        return sum + vote.value
+      }, 0);
+      user.score += el.score;
+    })
 
     const randomPics = [
       "https://s3.crackedcdn.com/phpimages/article/4/8/6/768486.jpg",

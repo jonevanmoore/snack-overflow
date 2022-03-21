@@ -31,6 +31,16 @@ block content
                         text= answers.length
                         br
                         text.t2 answers
+                    .score-length
+                        - let scoreClass = "";
+                        case user.score/Math.abs(user.score)
+                            when 1
+                                - scoreClass = "scorePos"
+                            when -1
+                                - scoreClass = "scoreNeg"
+                        text(class=scoreClass)= user.score
+                        br
+                        text.t2 score
 
         .cols
             if questions.length
@@ -51,6 +61,9 @@ block content
                     tr
                     each answer in answers
                         tr
-                            td.answer-td: a(href=`/questions/${answer.question_id}#ans-${answer.id}`)= answer.body
+                            td.answer-td
+                                if (answer.score !== 0)
+                                    i(class=((answer.score > 0 ? "scorePos" : "scoreNeg"))) (#{answer.score}) 
+                                a(href=`/questions/${answer.question_id}#ans-${answer.id}`)= answer.body
             else
                 text.no.noA No Answers Yet
