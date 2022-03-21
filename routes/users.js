@@ -167,8 +167,14 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/:id(\\d+)', async (req, res, next) => {
-  const user = await User.findByPk(Number(req.params.id),
-    { include: [ Question, Answer ] });
+  const user = await User.findByPk(Number(req.params.id), {
+    include: [
+      Question, {
+        model: Answer,
+        include: Vote
+      }
+    ]
+  });
   if (!user) {
     const error = new Error('User doesn\'t exist')
     error.status = 404
@@ -178,6 +184,7 @@ router.get('/:id(\\d+)', async (req, res, next) => {
     const answers = user.Answers;
     const questions = user.Questions;
 
+    // console.log(answers);
     answers.forEach(el => {
       console.log("===================================");
       console.log(el.Votes);

@@ -51,6 +51,9 @@ block content
                     tr
                     each answer in answers
                         tr
-                            td.answer-td: a(href=`/questions/${answer.question_id}#ans-${answer.id}`)= answer.body
+                            td.answer-td
+                                if (answer.score !== 0)
+                                    i(class=((answer.score > 0 ? "scorePos" : "scoreNeg"))) (#{answer.score}) 
+                                a(href=`/questions/${answer.question_id}#ans-${answer.id}`)= answer.body
             else
                 text.no.noA No Answers Yet
