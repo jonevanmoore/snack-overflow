@@ -9,6 +9,9 @@ SnackOverflow is a spiritual clone of StackOverflow, with a theme of all things 
 - vanilla CSS
 - and a few other packages
 
+# Link to Lur Site
+Hosted on Heroku: [SnackOverflow](http://snackoverflowapp.herokuapp.com/)
+
 # Main Features 
 - Sign Up or use the Demo User!
 - Read questions posted by other users, or post your own!
