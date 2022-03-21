@@ -32,7 +32,13 @@ block content
                         br
                         text.t2 answers
                     .score-length
-                        text= user.score
+                        - let scoreClass = "";
+                        case user.score/Math.abs(user.score)
+                            when 1
+                                - scoreClass = "scorePos"
+                            when -1
+                                - scoreClass = "scoreNeg"
+                        text(class=scoreClass)= user.score
                         br
                         text.t2 score
 
