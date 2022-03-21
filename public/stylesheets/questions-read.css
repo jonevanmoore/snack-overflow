@@ -1,9 +1,65 @@
 .questionBox {
     /* background-color: orange; */
-    width: 60%;
+    width: 100%;
 }
 
 .body-content {
   height: 100%;
   width: 60%;
 }
+
+.question-title {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(10, 149, 255);
+}
+
+.question-title:hover{
+  color: blue;
+}
+
+hr {
+  margin: 16px 0px;
+}
+
+.Qpreview {
+  font-size: 15px;
+  padding: 16px 0px 0px 0px;
+}
+
+.Qbox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.number-of-answers {
+  color: rgba(0,0,0,.5);
+}
+
+.Qusername {
+  padding: 16px;
+  background-color: #e1ecf4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  order: 1;
+  color: rgba(0,0,0,.5)
+}
+
+.Qusername > a {
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.Qoptions {
+  padding: 0px 0px 0px 5px;
+}
+
+.totalQs {
+  padding-top: 16px;
+} 

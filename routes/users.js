@@ -167,18 +167,17 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/:id(\\d+)', async (req, res, next) => {
-  const user = await User.findByPk(Number(req.params.id))
+  const user = await User.findByPk(Number(req.params.id),
+    { include: [ Question, Answer ] });
   if (!user) {
     const error = new Error('User doesn\'t exist')
     error.status = 404
     next(error)
   } else {
     const user_id = user.id
+    const answers = user.Answers;
+    const questions = user.Questions;
 
-    const answers = await Answer.findAll({
-      where: { user_id },
-      include: Vote
-    })
     answers.forEach(el => {
       console.log("===================================");
       console.log(el.Votes);
@@ -186,9 +185,6 @@ router.get('/:id(\\d+)', async (req, res, next) => {
         return sum + vote.value
       }, 0);
       console.log(el.score);
-    })
-    const questions = await Question.findAll({
-      where: { user_id }
     })
 
     const randomPics = [
