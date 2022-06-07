@@ -1,13 +1,12 @@
-
 .profile-pic {
-     height: 150px;
-     width: 200px;
-     object-fit: fill;
-     border-radius: 100px;
-     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    height: 150px;
+    width: 200px;
+    object-fit: fill;
+    border-radius: 100px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.user-info-div{
+.user-info-div {
     text-align: center;
     position: relative;
     bottom: 150px;
@@ -31,9 +30,11 @@
     right: 25px;
     bottom: 2px;
 }
+
 .mem {
     padding-left: 3px;
 }
+
 .member-since-div {
     display: flex;
     justify-content: space-evenly;
@@ -48,11 +49,13 @@
     justify-content: space-between;
     text-align: center;
 }
+
 .stats {
     position: relative;
     left: 40px;
     top: 35px;
 }
+
 .stat-nums {
     display: flex;
     border: 1px #c2c2c2 solid;
@@ -69,6 +72,7 @@
     position: relative;
     right: 10px;
 }
+
 .score-length {
     position: relative;
     left: 10px;
@@ -86,10 +90,15 @@ li {
     border: 1px solid #c2c2c2;
 }
 
-.cols{
+.cols {
     display: flex;
     position: relative;
     top: 20px;
+}
+
+.col {
+    width: 100%;
+    text-align: center;
 }
 
 th {
@@ -98,13 +107,13 @@ th {
     text-align: left;
     color: white;
     border-radius: 5px;
-  }
+}
 
 table {
     font-family: Helvetica;
     border-collapse: collapse;
     width: 100%;
-  }
+}
 
 
 a {
@@ -114,21 +123,29 @@ a {
 .scorePos {
     color: green;
 }
+
 .scoreNeg {
     color: red;
 }
 
-tr:nth-child(even){background-color: #d4d8ff;}
+tr:nth-child(even) {
+    background-color: #d4d8ff;
+}
 
-tr:hover {background-color: #ddd;}
+tr:hover {
+    background-color: #ddd;
+}
 
-.a,.q {
+.a,
+.q {
     text-align: center;
     font-weight: lighter;
 }
+
 .a {
     background-color: #a5a5a5;
 }
+
 .q {
     background-color: #3d71ff;
 }
