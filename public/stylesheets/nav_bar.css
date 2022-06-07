@@ -1,7 +1,7 @@
 nav {
     display: flex;
     justify-content: center;
-    box-shadow: 10px 3px 3px gainsboro;
+    box-shadow: 0px 3px 3px gainsboro;
     width: 100%;
     background-color: #F8F9F9;
 }
@@ -9,16 +9,17 @@ nav {
 .nav_bar_content {
     padding: 10px;
     width: 1350px;
+    width: 100vw;
 }
 
-.list{
+.list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
 }
 
-.nav_bar_left > li > a {
+.nav_bar_left>li>a {
     text-decoration: none;
 }
 
@@ -30,7 +31,8 @@ nav {
     flex-shrink: 0;
     flex-grow: 0;
 }
-.nav_bar_left > * {
+
+.nav_bar_left>* {
     margin: 0 10px;
 }
 
@@ -38,9 +40,11 @@ nav {
     display: flex;
     align-items: center;
 }
+
 .homepage_link {
     text-decoration: none;
 }
+
 .logo-title-alignment {
     display: flex;
     align-items: center;
@@ -54,17 +58,20 @@ nav {
     flex-shrink: 0;
     flex-grow: 0;
 }
-.login-logout > li > a {
+
+.login-logout>li>a {
     text-decoration: none;
     display: flex;
     align-items: center;
 }
+
 .search_div {
     flex-basis: 750px;
     flex-shrink: 1;
     flex-grow: 1;
     margin: 0px 10px;
 }
+
 #search-bar {
     width: 90%;
     border: black 1px solid;
@@ -76,6 +83,7 @@ nav {
     display: inline-block;
     width: 100%;
 }
+
 .fa-solid {
     position: relative;
     top: 1px;
@@ -89,6 +97,7 @@ nav {
     font-size: 40px;
     margin-left: 40px;
 }
+
 .fa-github:hover {
     opacity: 100%;
 }
